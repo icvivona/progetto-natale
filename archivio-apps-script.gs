@@ -8,8 +8,9 @@
  *
  * Il codice qui sotto è l'unica cosa da cambiare. Non va mai pubblicato su GitHub.
  */
-const CODICE_MODIFICA = 'natale';
+const CODICE_MODIFICA = 'cambia-questo-codice';
 
+const SEGNAPOSTO = 'cambia' + '-questo-codice';   // non modificare: serve a capire se il codice è stato impostato
 const FOGLIO_DATI = 'Dati';
 const FOGLIO_STORICO = 'Storico';
 const PEZZO = 40000;            // caratteri per cella (il limite di Fogli è 50.000)
@@ -29,7 +30,7 @@ function doPost(e) {
   } catch (err) {
     return risposta_({ ok: false, errore: 'richiesta' });
   }
-  if (CODICE_MODIFICA === 'cambia-questo-codice' || !CODICE_MODIFICA) {
+  if (!CODICE_MODIFICA || CODICE_MODIFICA === SEGNAPOSTO) {
     return risposta_({ ok: false, errore: 'codice-non-impostato' });
   }
   if (String(richiesta.codice || '') !== CODICE_MODIFICA) {
