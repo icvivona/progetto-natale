@@ -8,7 +8,7 @@
  *
  * Il codice qui sotto è l'unica cosa da cambiare. Non va mai pubblicato su GitHub.
  */
-const CODICE_MODIFICA = 'cambia-questo-codice';
+const CODICE_MODIFICA = 'natale';
 
 const FOGLIO_DATI = 'Dati';
 const FOGLIO_STORICO = 'Storico';
