@@ -1,0 +1,715 @@
+{
+  "versione": 1,
+  "updated": "2026-11-05",
+  "mercatino": {
+    "data": "2026-12-17",
+    "luogo": "",
+    "allestimento": ""
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "fase": "A",
+      "t": "Chiedere nel gruppo inclusione della secondaria in quali giorni ogni classe ha Arte e Tecnologia pratica",
+      "chi": "Referenti",
+      "entro": "2026-11-04",
+      "stato": "done",
+      "fonte": "Appunti, punto 1",
+      "nota": ""
+    },
+    {
+      "id": "t2",
+      "fase": "A",
+      "t": "Fissare il calendario dei laboratori, escludendo i giorni con Arte e Tecnologia pratica",
+      "chi": "Referenti",
+      "entro": "2026-11-11",
+      "stato": "done",
+      "fonte": "Appunti, punto 1",
+      "nota": "Si compila nella scheda Laboratori."
+    },
+    {
+      "id": "t3",
+      "fase": "A",
+      "t": "Scegliere i lavori da realizzare, partendo dai più facili, e preparare un campione di ciascuno",
+      "chi": "Referenti, Sabrina e Gabriella",
+      "entro": "2026-11-11",
+      "stato": "todo",
+      "fonte": "Appunti, punto 2",
+      "nota": "Le proposte sono nella scheda Laboratori."
+    },
+    {
+      "id": "t4",
+      "fase": "A",
+      "t": "Passare nelle classi per chiedere il materiale di recupero e il fondo cassa di 5 € per classe",
+      "chi": "Ambra e Rossella",
+      "entro": "2026-11-06",
+      "stato": "done",
+      "fonte": "Appunti, punto 3",
+      "nota": "Segnare nella scheda Classi chi ha consegnato."
+    },
+    {
+      "id": "t5",
+      "fase": "A",
+      "t": "Registrare in cassa gli acquisti già fatti, con gli scontrini",
+      "chi": "Livio",
+      "entro": "2026-11-06",
+      "stato": "doing",
+      "fonte": "Appunti, punto 3",
+      "nota": ""
+    },
+    {
+      "id": "t6",
+      "fase": "A",
+      "t": "Individuare l'aula-laboratorio dove tenere materiale e manufatti, con armadio e chiave",
+      "chi": "Referenti",
+      "entro": "2026-11-06",
+      "stato": "done",
+      "fonte": "Appunti, punto 5",
+      "nota": ""
+    },
+    {
+      "id": "t7",
+      "fase": "A",
+      "t": "Concordare con Paolo il giorno del Mercatino e come raccogliere le offerte",
+      "chi": "Referenti",
+      "entro": "2026-11-11",
+      "stato": "todo",
+      "fonte": "Appunti, punto 7",
+      "nota": "Il 22 dicembre è l'ultimo giorno di lezione prima delle vacanze."
+    },
+    {
+      "id": "t8",
+      "fase": "A",
+      "t": "Condividere questa pagina con il dipartimento di inclusione, Sabrina e Gabriella",
+      "chi": "Livio",
+      "entro": "2026-11-04",
+      "stato": "doing",
+      "fonte": "Appunti, punto 9",
+      "nota": ""
+    },
+    {
+      "id": "t9",
+      "fase": "A",
+      "t": "Fissare i criteri per far uscire gli alunni e comunicarli ai docenti delle classi",
+      "chi": "Dipartimento di inclusione",
+      "entro": "2026-11-11",
+      "stato": "todo",
+      "fonte": "Appunti, punto 10",
+      "nota": "Vedi la scheda Accordi."
+    },
+    {
+      "id": "t10",
+      "fase": "A",
+      "t": "Verificare che il progetto sia approvato dal Collegio dei docenti e dal Consiglio d'Istituto",
+      "chi": "Referenti",
+      "entro": "2026-11-13",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": "Nel progetto le delibere risultano ancora da acquisire."
+    },
+    {
+      "id": "t11",
+      "fase": "A",
+      "t": "Controllare i consensi per le foto degli alunni prima di iniziare a documentare",
+      "chi": "Referenti",
+      "entro": "2026-11-13",
+      "stato": "todo",
+      "fonte": "Appunti, punto 8",
+      "nota": ""
+    },
+    {
+      "id": "t12",
+      "fase": "A",
+      "t": "Decidere chi raccoglie i manufatti della 1A, che non ha un docente di sostegno",
+      "chi": "Referenti",
+      "entro": "2026-11-11",
+      "stato": "todo",
+      "fonte": "Appunti, punto 6",
+      "nota": ""
+    },
+    {
+      "id": "t13",
+      "fase": "B",
+      "t": "Avviare i laboratori secondo il calendario, con una prima osservazione degli alunni",
+      "chi": "Docenti di sostegno, Sabrina e Gabriella",
+      "entro": "2026-11-16",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t14",
+      "fase": "B",
+      "t": "Fare la lista del materiale che manca e comprarlo con il fondo cassa",
+      "chi": "Referenti",
+      "entro": "2026-11-20",
+      "stato": "todo",
+      "fonte": "Appunti, punto 3",
+      "nota": "Lo stato del materiale è nella scheda Laboratori."
+    },
+    {
+      "id": "t15",
+      "fase": "B",
+      "t": "Portare ogni settimana in laboratorio i manufatti della propria classe e aggiornare la scheda Classi",
+      "chi": "Docenti di sostegno",
+      "entro": "2026-12-16",
+      "stato": "todo",
+      "fonte": "Appunti, punto 6",
+      "nota": ""
+    },
+    {
+      "id": "t16",
+      "fase": "B",
+      "t": "Fotografare ogni incontro e caricare le foto nella cartella condivisa",
+      "chi": "Tutti",
+      "entro": "2026-12-16",
+      "stato": "todo",
+      "fonte": "Appunti, punto 8",
+      "nota": "Regole per le foto nella scheda Accordi."
+    },
+    {
+      "id": "t17",
+      "fase": "B",
+      "t": "Contare i manufatti pronti e preparare i cartellini",
+      "chi": "Gabriella",
+      "entro": "2026-12-14",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t18",
+      "fase": "C",
+      "t": "Decidere con Sabrina dove fare il Mercatino e come allestirlo",
+      "chi": "Referenti e Sabrina",
+      "entro": "2026-11-20",
+      "stato": "todo",
+      "fonte": "Appunti, punto 4",
+      "nota": "Annotare luogo e allestimento nella scheda Accordi."
+    },
+    {
+      "id": "t19",
+      "fase": "C",
+      "t": "Preparare l'invito alle famiglie (avviso sul sito e ai rappresentanti dei genitori) con data, luogo e destinazione delle offerte",
+      "chi": "Livio",
+      "entro": "2026-12-09",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t20",
+      "fase": "C",
+      "t": "Organizzare i turni di alunni e docenti durante il Mercatino",
+      "chi": "Referenti",
+      "entro": "2026-12-11",
+      "stato": "todo",
+      "fonte": "",
+      "nota": ""
+    },
+    {
+      "id": "t21",
+      "fase": "C",
+      "t": "Allestire lo spazio: tavoli, tovaglie, cartelli e cassetta per le offerte",
+      "chi": "Sabrina e classi",
+      "entro": "",
+      "rel": "mercatino-1",
+      "stato": "todo",
+      "fonte": "Appunti, punto 4",
+      "nota": "Il giorno di lezione prima del Mercatino."
+    },
+    {
+      "id": "t22",
+      "fase": "C",
+      "t": "Mercatino di Natale",
+      "chi": "Tutti",
+      "entro": "",
+      "rel": "mercatino",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": "Data da fissare con Paolo."
+    },
+    {
+      "id": "t23",
+      "fase": "C",
+      "t": "Contare le offerte in due docenti, firmare un breve verbale e consegnare la somma come concordato",
+      "chi": "Ambra",
+      "entro": "",
+      "rel": "mercatino",
+      "stato": "todo",
+      "fonte": "Appunti, punto 7",
+      "nota": "Lo stesso giorno del Mercatino."
+    },
+    {
+      "id": "t24",
+      "fase": "D",
+      "t": "Rendicontare le offerte e acquistare i semi",
+      "chi": "Referenti",
+      "entro": "2027-01-29",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t25",
+      "fase": "D",
+      "t": "Preparare il prodotto digitale della fase 1 con foto ed elaborati",
+      "chi": "Livio",
+      "entro": "2027-01-29",
+      "stato": "todo",
+      "fonte": "Appunti, punto 8",
+      "nota": ""
+    },
+    {
+      "id": "t26",
+      "fase": "D",
+      "t": "Autovalutazione degli alunni e osservazione di fine fase",
+      "chi": "Docenti di sostegno",
+      "entro": "2027-01-29",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t27",
+      "fase": "E",
+      "t": "Progettare l'orto e scegliere le coltivazioni",
+      "chi": "Referenti e Scienze",
+      "entro": "2027-02-26",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t28",
+      "fase": "E",
+      "t": "Preparare spazi, terreno e contenitori",
+      "chi": "Referenti e Tecnologia",
+      "entro": "2027-03-19",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t29",
+      "fase": "E",
+      "t": "Seminare e organizzare i turni di cura dell'orto",
+      "chi": "Tutti",
+      "entro": "2027-05-28",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    },
+    {
+      "id": "t30",
+      "fase": "E",
+      "t": "Documentazione e verifica finale del progetto",
+      "chi": "Referenti",
+      "entro": "2027-05-28",
+      "stato": "todo",
+      "fonte": "Progetto",
+      "nota": ""
+    }
+  ],
+  "sessioni": [
+    {
+      "id": "s1",
+      "data": "2026-11-09",
+      "ora": "3",
+      "gruppo": "1A",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S.",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "s2",
+      "data": "2026-11-09",
+      "ora": "4",
+      "gruppo": "2A",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S., Di Franco",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "s3",
+      "data": "2026-11-10",
+      "ora": "2",
+      "gruppo": "1B",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S.",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "s4",
+      "data": "2026-11-10",
+      "ora": "3",
+      "gruppo": "3A",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S., Borruso",
+      "lavoro": "Magneti con il das",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1uve6leq4u",
+      "data": "2026-11-10",
+      "ora": "4",
+      "gruppo": "3B",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S., Milazzo",
+      "lavoro": "Lanterne da barattoli",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1uwfi3cura",
+      "data": "2026-11-10",
+      "ora": "5",
+      "gruppo": "2B",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S., Riginella",
+      "lavoro": "",
+      "stato": "da fissare"
+    },
+    {
+      "id": "smw1ux3r9jgro",
+      "data": "2026-11-10",
+      "ora": "6",
+      "gruppo": "2C",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S., Blunda",
+      "lavoro": "",
+      "stato": "da fissare"
+    },
+    {
+      "id": "smw1uxmpnakic",
+      "data": "2026-11-11",
+      "ora": "3",
+      "gruppo": "3B, 1A",
+      "aula": "Laboratorio",
+      "docenti": "Milazzo",
+      "lavoro": "Addobbi albero",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1v0ae2plz1",
+      "data": "2026-11-11",
+      "ora": "5",
+      "gruppo": "2A, 2C",
+      "aula": "Laboratorio",
+      "docenti": "Blunda, Di Franco",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1v30g6f2fi",
+      "data": "2026-11-12",
+      "ora": "4",
+      "gruppo": "3B",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S.",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1v4vjw0q97",
+      "data": "2026-11-12",
+      "ora": "5",
+      "gruppo": "1A",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S.",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1v5o2r120o",
+      "data": "2026-11-12",
+      "ora": "6",
+      "gruppo": "2C",
+      "aula": "Laboratorio",
+      "docenti": "Gucciardi S.",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1v6c6ty021",
+      "data": "2026-11-13",
+      "ora": "4",
+      "gruppo": "3B, 1B",
+      "aula": "Laboratorio",
+      "docenti": "Milazzo",
+      "lavoro": "",
+      "stato": "fissato"
+    },
+    {
+      "id": "smw1vawrt1hk1",
+      "data": "2026-11-13",
+      "ora": "2",
+      "gruppo": "3A, 2C",
+      "aula": "Laboratorio",
+      "docenti": "Borruso, Blunda",
+      "lavoro": "",
+      "stato": "fissato"
+    }
+  ],
+  "lavori": [
+    {
+      "id": "l1",
+      "nome": "Alberelli a incastro in cartone",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "cartone, colori, nastri, bottoni",
+      "nota": "Sagoma pronta da ricalcare; si lavora bene in coppia.",
+      "stato": "scelto"
+    },
+    {
+      "id": "l2",
+      "nome": "Decorazioni con tappi di plastica",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "tappi, colla vinilica, gomma eva, cordoncino",
+      "nota": "Gesti semplici e ripetibili, adatti a tutti.",
+      "stato": "scelto"
+    },
+    {
+      "id": "l3",
+      "nome": "Lanterne da barattoli",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "barattoli puliti, carta velina, colla vinilica, nastri",
+      "nota": "Dentro solo lucine LED a batteria.",
+      "stato": "scelto"
+    },
+    {
+      "id": "l4",
+      "nome": "Stelle e fiocchi con rotoli di cartone",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "rotoli di carta, colla, colori",
+      "nota": "Gli anelli si tagliano prima dell'incontro.",
+      "stato": "scelto"
+    },
+    {
+      "id": "l5",
+      "nome": "Biglietti di auguri in carta di recupero",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "cartoncini, gomma eva, colori, ritagli di carta",
+      "nota": "Ognuno può contribuire anche con un solo elemento.",
+      "stato": "scelto"
+    },
+    {
+      "id": "l6",
+      "nome": "Ghirlande in cartone con stoffe e bottoni",
+      "livello": 2,
+      "incontri": 2,
+      "materiali": "cartone, ritagli di stoffa, bottoni, nastri",
+      "nota": "La base si ritaglia prima, a cura dei docenti.",
+      "stato": "scelto"
+    },
+    {
+      "id": "l7",
+      "nome": "Alberi con fondi di bottiglia",
+      "livello": 2,
+      "incontri": 2,
+      "materiali": "fondi di bottiglie di plastica, colori, spago",
+      "nota": "Il taglio delle bottiglie lo fa un adulto.",
+      "stato": "proposta"
+    },
+    {
+      "id": "l8",
+      "nome": "Vasetti decorati per l'orto",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "barattoli o bottiglie, colori, spago, etichette",
+      "nota": "Collega il Mercatino all'orto: in primavera servono per la semina.",
+      "stato": "proposta"
+    },
+    {
+      "id": "lmw1vgq52a9ys",
+      "nome": "Magneti con il das",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "Das",
+      "nota": "",
+      "stato": "scelto"
+    },
+    {
+      "id": "lmw1viqieq3jd",
+      "nome": "Addobbi albero",
+      "livello": 1,
+      "incontri": 1,
+      "materiali": "Cartoncino, tappi",
+      "nota": "",
+      "stato": "scelto"
+    }
+  ],
+  "materiale": [
+    {
+      "id": "m1",
+      "n": "Cartoncini colorati",
+      "s": "ver"
+    },
+    {
+      "id": "m2",
+      "n": "Colla vinilica",
+      "s": "ver"
+    },
+    {
+      "id": "m3",
+      "n": "Colla stick",
+      "s": "ver"
+    },
+    {
+      "id": "m4",
+      "n": "Nastri",
+      "s": "ver"
+    },
+    {
+      "id": "m5",
+      "n": "Colori",
+      "s": "ver"
+    },
+    {
+      "id": "m6",
+      "n": "Glitter",
+      "s": "ver"
+    },
+    {
+      "id": "m7",
+      "n": "Gomma eva",
+      "s": "ver"
+    },
+    {
+      "id": "m8",
+      "n": "Cordoncino e spago",
+      "s": "ver"
+    },
+    {
+      "id": "m9",
+      "n": "Bottoni",
+      "s": "ver"
+    },
+    {
+      "id": "m10",
+      "n": "Rotoli di carta",
+      "s": "ver"
+    },
+    {
+      "id": "m11",
+      "n": "Forbici",
+      "s": "ver"
+    },
+    {
+      "id": "m12",
+      "n": "Lucine LED a batteria",
+      "s": "ver"
+    }
+  ],
+  "classi": [
+    {
+      "c": "1A",
+      "plesso": "Vivona",
+      "ref": "Simona",
+      "materiale": false,
+      "fondo": 5,
+      "manufatti": 0,
+      "note": "Senza docente di sostegno: individuare chi raccoglie i manufatti"
+    },
+    {
+      "c": "2A",
+      "plesso": "Vivona",
+      "ref": "Livio",
+      "materiale": false,
+      "fondo": 0,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "3A",
+      "plesso": "Vivona",
+      "ref": "Claudia",
+      "materiale": false,
+      "fondo": 0,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "1B",
+      "plesso": "Vivona",
+      "ref": "",
+      "materiale": false,
+      "fondo": 5,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "2B",
+      "plesso": "Vivona",
+      "ref": "Milena",
+      "materiale": false,
+      "fondo": 0,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "3B",
+      "plesso": "Vivona",
+      "ref": "Ambra",
+      "materiale": false,
+      "fondo": 5,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "2C",
+      "plesso": "Vivona",
+      "ref": "Rossella",
+      "materiale": false,
+      "fondo": 5,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "1D",
+      "plesso": "Capuana",
+      "ref": "Irene",
+      "materiale": false,
+      "fondo": 0,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "2D",
+      "plesso": "Capuana",
+      "ref": "",
+      "materiale": false,
+      "fondo": 0,
+      "manufatti": 0,
+      "note": ""
+    },
+    {
+      "c": "3D",
+      "plesso": "Capuana",
+      "ref": "Serena",
+      "materiale": false,
+      "fondo": 0,
+      "manufatti": 0,
+      "note": ""
+    }
+  ],
+  "cassa": [
+    {
+      "id": "cmvvge7qlhnlq",
+      "data": "2026-10-30",
+      "desc": "Materiali vari",
+      "fondo": "materiali",
+      "tipo": "uscita",
+      "importo": 29.4,
+      "chi": "Ambra",
+      "scontrino": true
+    }
+  ],
+  "decisioni": []
+}

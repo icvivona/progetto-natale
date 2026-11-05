@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="pn-sito" content="github">
+<meta name="description" content="Progetto «Dal riuso alla vita»: cose da fare, cronoprogramma, laboratori, classi e cassa. Versione in consultazione.">
+<title>Dal riuso alla vita</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c5a45'/%3E%3Cpath d='M16 5l7 11h-4l5 8H8l5-8H9z' fill='%23fff'/%3E%3Crect x='14.5' y='24' width='3' height='4' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<style id="app-css">
+/* Layout: project band (name, Mercatino countdown, progress) over a sticky tab rail; one working column of rows, tables and a few cards */
+:root{
+  --paper:#eff2ee; --sheet:#fbfcfa; --ink:#18221d; --muted:#56645d; --line:#d3dbd5;
+  --pine:#1c5a45; --pine-soft:#dcebe3; --on-pine:#ffffff;
+  --berry:#a8322b; --berry-soft:#f5e1de;
+  --leaf:#4a7a27; --leaf-soft:#e4efd8;
+  --amber:#8f5506; --amber-soft:#f7e8cf;
+  --danger:#b42318;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible",Verdana,"Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111714; --sheet:#18201c; --ink:#e3eae6; --muted:#9caba4; --line:#2d3934;
+    --pine:#7cc4a6; --pine-soft:#1b3429; --on-pine:#0c1712;
+    --berry:#f0897f; --berry-soft:#3a1f1c;
+    --leaf:#a6cf7c; --leaf-soft:#223018;
+    --amber:#eeb459; --amber-soft:#382a12;
+    --danger:#ff8a80;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111714; --sheet:#18201c; --ink:#e3eae6; --muted:#9caba4; --line:#2d3934;
+  --pine:#7cc4a6; --pine-soft:#1b3429; --on-pine:#0c1712;
+  --berry:#f0897f; --berry-soft:#3a1f1c;
+  --leaf:#a6cf7c; --leaf-soft:#223018;
+  --amber:#eeb459; --amber-soft:#382a12;
+  --danger:#ff8a80;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:70rem;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.boot{padding-block:40px;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--pine)}
+
+/* band */
+.band{background:var(--sheet);border-bottom:1px solid var(--line)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:22px 40px;padding-block:28px 24px;align-items:end}
+@media (max-width:860px){.head{grid-template-columns:minmax(0,1fr)}}
+.eyebrow{font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+h1{font-size:clamp(2.1rem,4.6vw,3.1rem);font-weight:800;line-height:1;color:var(--pine)}
+.sub{margin-top:10px;color:var(--muted);max-width:44ch}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat.mk{grid-column:1/-1}.stats .v{font-size:1.25rem}.tabs a{padding-inline:10px}}
+.stat{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;background:var(--paper);display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat.mk{background:var(--berry-soft);border-color:transparent}
+.stat.mk .v{color:var(--berry)}
+.k,.lbl{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.v{font-family:var(--f-display);font-size:1.5rem;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.s{font-size:.84rem;color:var(--muted)}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--pine);border-radius:3px}
+
+/* tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tabs a{flex:none;padding:13px 12px 10px;color:var(--muted);text-decoration:none;font-weight:700;font-size:.95rem;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--pine)}
+.mode{font-size:.88rem;color:var(--muted);padding-top:14px}
+.mode b{color:var(--ink)}
+main{padding-block:18px 130px}
+
+/* sections */
+.sec{margin-top:30px}
+.sec:first-child{margin-top:8px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:6px 14px;flex-wrap:wrap;margin-bottom:12px}
+h2{font-size:1.35rem;font-weight:700}
+.hint{color:var(--muted);font-size:.9rem;max-width:62ch}
+.empty{color:var(--muted);font-style:italic;font-size:.92rem;padding:10px 0}
+
+/* next deadlines */
+.next{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:920px){.next{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.next{grid-template-columns:minmax(0,1fr)}}
+.next li{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.next .d{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.next .x{font-weight:700;line-height:1.3}
+.next .w{font-size:.85rem;color:var(--muted)}
+.next li.late{border-color:var(--danger)}
+.next li.late .d{color:var(--danger)}
+
+/* filters */
+.filters{display:flex;gap:10px 18px;align-items:end;flex-wrap:wrap;margin-top:30px;padding:12px 14px;border-radius:var(--r);background:var(--sheet);border:1px solid var(--line)}
+.filters .field{width:min(240px,100%)}
+.check{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;cursor:pointer;padding-bottom:7px}
+
+/* phases + tasks */
+.t-berry{--tone:var(--berry);--tone-soft:var(--berry-soft)}
+.t-leaf{--tone:var(--leaf);--tone-soft:var(--leaf-soft)}
+.t-pine{--tone:var(--pine);--tone-soft:var(--pine-soft)}
+.fase{margin-top:26px}
+.fase-h{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap;padding-bottom:8px;border-bottom:2px solid var(--tone)}
+.tag{font-family:var(--f-mono);font-size:.72rem;padding:3px 8px;border-radius:999px;background:var(--tone-soft);color:var(--tone);text-transform:uppercase;letter-spacing:.04em}
+.fase-h h3{font-size:1.12rem}
+.per{color:var(--muted);font-size:.88rem}
+.cnt{margin-left:auto;font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.tasks{list-style:none;margin:0;padding:0}
+.task{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 14px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+@media (max-width:540px){.task{grid-template-columns:auto minmax(0,1fr)}.task>.ico{grid-column:2;justify-self:start;margin-top:-4px;padding-left:0}}
+.st{display:inline-flex;align-items:center;gap:7px;font:700 .78rem/1 var(--f-body);padding:7px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--sheet);color:var(--muted);min-width:7.4em;white-space:nowrap}
+button.st{cursor:pointer}
+button.st:hover{border-color:var(--muted)}
+.dot{width:11px;height:11px;border-radius:50%;border:2px solid currentColor;flex:none}
+.s-doing .st{border-color:var(--amber);color:var(--amber);background:var(--amber-soft)}
+.s-doing .dot{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+.s-done .st{border-color:var(--pine);color:var(--on-pine);background:var(--pine)}
+.s-done .dot{background:currentColor}
+.s-done .tt{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.tt{font-weight:700;line-height:1.35}
+.meta{margin-top:4px;display:flex;flex-wrap:wrap;gap:2px 14px;font-size:.86rem;color:var(--muted)}
+.due{font-family:var(--f-mono);font-size:.8rem}
+.late .due,.due.late{color:var(--danger);font-weight:700}
+.src{font-style:italic}
+.nota{margin-top:5px;font-size:.92rem}
+.ico{background:none;border:1px solid transparent;color:var(--pine);font:700 .84rem var(--f-body);padding:7px 9px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.ico:hover{border-color:var(--line)}
+.add{margin-top:6px}
+
+/* forms */
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.78rem;font-weight:700;color:var(--muted)}
+input,select{font:inherit;font-size:.95rem;color:var(--ink);background:var(--sheet);border:1px solid var(--line);border-radius:7px;padding:7px 9px;min-width:0;width:100%}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--pine);padding:0;flex:none}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+.fixed{font-size:.88rem;color:var(--muted);padding:8px 0}
+.editor{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px;background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);margin-top:4px}
+.w2{grid-column:span 2}.w4{grid-column:1/-1}
+@media (max-width:640px){.editor{grid-template-columns:repeat(2,minmax(0,1fr))}.editor .w2,.editor .w4{grid-column:1/-1}}
+.btn{font:700 .9rem var(--f-body);padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn.pri{background:var(--pine);border-color:var(--pine);color:var(--on-pine)}
+.btn.warn{color:var(--danger)}
+.btn.sm{padding:5px 9px;font-size:.8rem}
+.row-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.addform{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:end;margin-top:12px;padding:14px;border:1px dashed var(--line);border-radius:var(--r)}
+.addform .w2{grid-column:span 2}
+.addform .w3{grid-column:span 3}
+@media (max-width:760px){.addform{grid-template-columns:repeat(2,minmax(0,1fr))}.addform .w2,.addform .w3{grid-column:1/-1}}
+.addform .check{padding-bottom:9px}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--sheet)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--paper);white-space:nowrap;font-weight:700}
+tbody tr:last-child td{border-bottom:0}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+td input{padding:6px 7px}
+.tbl-sess{min-width:860px}.tbl-classi{min-width:720px}.tbl-cassa{min-width:640px}
+td.c-id{font-family:var(--f-display);font-weight:700;font-size:1.05rem}
+.pos{color:var(--pine)}.neg{color:var(--berry)}
+.pill{display:inline-block;font-size:.76rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{background:var(--pine-soft);border-color:transparent;color:var(--pine)}
+.pill.warn{background:var(--amber-soft);border-color:transparent;color:var(--amber)}
+
+/* gantt */
+.g-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--sheet);padding:6px 14px 10px}
+.gantt{min-width:700px;display:grid;grid-template-columns:minmax(220px,1.7fr) repeat(9,minmax(0,1fr));position:relative;font-size:.88rem}
+.g-m{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);text-align:center;padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.g-m.cur{color:var(--ink)}
+.g-h{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.g-l{padding:9px 12px 9px 0;border-bottom:1px solid var(--line);line-height:1.3;min-width:0}
+.g-c{border-bottom:1px solid var(--line);border-left:1px solid var(--line);padding:0 1px;display:flex;align-items:center}
+.g-c i{display:block;height:14px;width:100%;background:var(--tone)}
+.g-c.first i{border-top-left-radius:7px;border-bottom-left-radius:7px;margin-left:3px}
+.g-c.last i{border-top-right-radius:7px;border-bottom-right-radius:7px;margin-right:3px}
+.g-today{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);pointer-events:none}
+.g-today span{position:absolute;bottom:4px;left:4px;font-family:var(--f-mono);font-size:.68rem;background:var(--ink);color:var(--paper);padding:1px 5px;border-radius:4px;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:.85rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:16px;height:8px;border-radius:4px;background:var(--tone);display:inline-block}
+
+/* weeks */
+.weeks{border-top:1px solid var(--line)}
+.week{display:grid;grid-template-columns:10rem minmax(0,1fr);gap:6px 16px;padding:11px 0;border-bottom:1px solid var(--line)}
+@media (max-width:540px){.week{grid-template-columns:minmax(0,1fr)}}
+.wk{font-family:var(--f-mono);font-size:.82rem;color:var(--muted);padding-top:2px}
+.week.now .wk{color:var(--ink)}
+.week.now .wk b{display:inline-block;margin-left:6px;font-family:var(--f-body);font-size:.7rem;background:var(--pine);color:var(--on-pine);padding:2px 7px;border-radius:999px;vertical-align:1px}
+.week.hol{color:var(--muted)}
+.wi{display:flex;flex-direction:column;gap:7px;min-width:0}
+.wrow{display:flex;gap:10px;align-items:baseline;min-width:0}
+.wrow .pill{flex:none}
+.wrow .x{min-width:0}
+.ev{font-size:.88rem;color:var(--berry);font-weight:700}
+.ev.mk{color:var(--berry)}
+.dates{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+@media (max-width:640px){.dates{grid-template-columns:minmax(0,1fr)}}
+.dates li{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.dates .due{color:var(--muted)}
+
+/* lavori */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card.scelto{border-color:var(--pine);box-shadow:inset 0 0 0 1px var(--pine)}
+.card.scartato{opacity:.62}
+.card-h{display:flex;justify-content:space-between;align-items:start;gap:10px}
+.card h3{font-size:1.04rem;line-height:1.25}
+.lvl{font-size:.74rem;font-weight:700;color:var(--muted);white-space:nowrap;display:inline-flex;gap:3px;align-items:center;padding-top:3px}
+.lvl i{width:7px;height:7px;border-radius:50%;background:var(--line);display:inline-block}
+.lvl i.on{background:var(--pine)}
+.card .mat{font-size:.9rem}
+.card .s{font-size:.84rem}
+.seg{display:flex;gap:4px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.seg button{font:700 .78rem var(--f-body);padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:var(--on-pine)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1.5px dashed var(--line);border-radius:999px;padding:5px 12px;font:inherit;font-size:.88rem;background:var(--sheet);color:var(--ink)}
+button.chip{cursor:pointer}
+.chip small{color:var(--muted);font-size:.78rem}
+.chip.ok{border-style:solid;border-color:var(--pine)}
+.chip.poco{border-style:solid;border-color:var(--amber);background:var(--amber-soft)}
+.chip.compra{border-style:solid;border-color:var(--berry);background:var(--berry-soft)}
+.inline-add{display:flex;gap:8px;margin-top:12px;max-width:420px}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;min-width:0;display:flex;flex-direction:column;gap:2px}
+
+/* accordi */
+.acc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 36px}
+@media (max-width:760px){.acc{grid-template-columns:minmax(0,1fr)}}
+.block{border-top:2px solid var(--line);padding-top:12px;min-width:0}
+.block h3{font-size:1.08rem;margin-bottom:10px}
+.block ul{margin:0;padding-left:1.15em;display:grid;gap:7px}
+.block .prop{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.block .prop .lbl{display:block;margin-bottom:8px}
+.roles{display:grid;gap:12px;margin:0}
+.roles dt{font-weight:700}
+.roles dd{margin:2px 0 0;color:var(--muted);font-size:.93rem}
+.mk-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:14px;background:var(--berry-soft);border-radius:var(--r)}
+@media (max-width:640px){.mk-form{grid-template-columns:minmax(0,1fr)}}
+.mk-read{display:grid;gap:6px;padding:14px 16px;background:var(--berry-soft);border-radius:var(--r)}
+.log{list-style:none;margin:0;padding:0}
+.log li{display:grid;grid-template-columns:7.5rem minmax(0,1fr) auto;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);align-items:baseline}
+@media (max-width:540px){.log li{grid-template-columns:minmax(0,1fr) auto}.log li .due{grid-column:1/-1}}
+code{font-family:var(--f-mono);font-size:.84em;background:var(--paper);border:1px solid var(--line);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;font-size:.84rem;color:var(--muted);display:grid;gap:4px}
+.export{display:grid;gap:8px;margin-top:10px;padding-top:12px;border-top:1px dashed var(--line)}
+.export b{color:var(--ink)}
+.export-box{width:100%;min-height:10rem;font:.78rem/1.45 var(--f-mono);color:var(--ink);background:var(--sheet);border:1px solid var(--line);border-radius:7px;padding:8px 10px;resize:vertical}
+.export-box:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+
+/* save bar + toast */
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--paper);padding-bottom:env(safe-area-inset-bottom,0px)}
+.savebar .wrap{display:flex;gap:10px 14px;align-items:center;justify-content:space-between;padding-block:12px;flex-wrap:wrap}
+.savebar p{font-size:.92rem}
+.savebar .btn{border-color:var(--paper);background:transparent;color:var(--paper)}
+.savebar .btn.pri{background:var(--paper);color:var(--ink)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--sheet);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 16px;box-shadow:0 8px 28px rgba(0,0,0,.18);max-width:calc(100% - 32px);z-index:30;font-size:.92rem}
+@media (prefers-reduced-motion:no-preference){.toast{animation:up .18s ease-out}@keyframes up{from{transform:translate(-50%,8px);opacity:0}}}
+</style>
+</head>
+<body>
+<div id="app"><p class="wrap boot">Caricamento del progetto…</p></div>
+<noscript><p class="wrap boot">Per vedere la pagina serve JavaScript attivo nel browser.</p></noscript>
+<script type="application/json" id="project-state">{"versione":1,"updated":"2026-11-05","mercatino":{"data":"2026-12-17","luogo":"","allestimento":""},"tasks":[{"id":"t1","fase":"A","t":"Chiedere nel gruppo inclusione della secondaria in quali giorni ogni classe ha Arte e Tecnologia pratica","chi":"Referenti","entro":"2026-11-04","stato":"done","fonte":"Appunti, punto 1","nota":""},{"id":"t2","fase":"A","t":"Fissare il calendario dei laboratori, escludendo i giorni con Arte e Tecnologia pratica","chi":"Referenti","entro":"2026-11-11","stato":"done","fonte":"Appunti, punto 1","nota":"Si compila nella scheda Laboratori."},{"id":"t3","fase":"A","t":"Scegliere i lavori da realizzare, partendo dai più facili, e preparare un campione di ciascuno","chi":"Referenti, Sabrina e Gabriella","entro":"2026-11-11","stato":"todo","fonte":"Appunti, punto 2","nota":"Le proposte sono nella scheda Laboratori."},{"id":"t4","fase":"A","t":"Passare nelle classi per chiedere il materiale di recupero e il fondo cassa di 5 € per classe","chi":"Ambra e Rossella","entro":"2026-11-06","stato":"done","fonte":"Appunti, punto 3","nota":"Segnare nella scheda Classi chi ha consegnato."},{"id":"t5","fase":"A","t":"Registrare in cassa gli acquisti già fatti, con gli scontrini","chi":"Livio","entro":"2026-11-06","stato":"doing","fonte":"Appunti, punto 3","nota":""},{"id":"t6","fase":"A","t":"Individuare l'aula-laboratorio dove tenere materiale e manufatti, con armadio e chiave","chi":"Referenti","entro":"2026-11-06","stato":"done","fonte":"Appunti, punto 5","nota":""},{"id":"t7","fase":"A","t":"Concordare con Paolo il giorno del Mercatino e come raccogliere le offerte","chi":"Referenti","entro":"2026-11-11","stato":"todo","fonte":"Appunti, punto 7","nota":"Il 22 dicembre è l'ultimo giorno di lezione prima delle vacanze."},{"id":"t8","fase":"A","t":"Condividere questa pagina con il dipartimento di inclusione, Sabrina e Gabriella","chi":"Livio","entro":"2026-11-04","stato":"doing","fonte":"Appunti, punto 9","nota":""},{"id":"t9","fase":"A","t":"Fissare i criteri per far uscire gli alunni e comunicarli ai docenti delle classi","chi":"Dipartimento di inclusione","entro":"2026-11-11","stato":"todo","fonte":"Appunti, punto 10","nota":"Vedi la scheda Accordi."},{"id":"t10","fase":"A","t":"Verificare che il progetto sia approvato dal Collegio dei docenti e dal Consiglio d'Istituto","chi":"Referenti","entro":"2026-11-13","stato":"todo","fonte":"Progetto","nota":"Nel progetto le delibere risultano ancora da acquisire."},{"id":"t11","fase":"A","t":"Controllare i consensi per le foto degli alunni prima di iniziare a documentare","chi":"Referenti","entro":"2026-11-13","stato":"todo","fonte":"Appunti, punto 8","nota":""},{"id":"t12","fase":"A","t":"Decidere chi raccoglie i manufatti della 1A, che non ha un docente di sostegno","chi":"Referenti","entro":"2026-11-11","stato":"todo","fonte":"Appunti, punto 6","nota":""},{"id":"t13","fase":"B","t":"Avviare i laboratori secondo il calendario, con una prima osservazione degli alunni","chi":"Docenti di sostegno, Sabrina e Gabriella","entro":"2026-11-16","stato":"todo","fonte":"Progetto","nota":""},{"id":"t14","fase":"B","t":"Fare la lista del materiale che manca e comprarlo con il fondo cassa","chi":"Referenti","entro":"2026-11-20","stato":"todo","fonte":"Appunti, punto 3","nota":"Lo stato del materiale è nella scheda Laboratori."},{"id":"t15","fase":"B","t":"Portare ogni settimana in laboratorio i manufatti della propria classe e aggiornare la scheda Classi","chi":"Docenti di sostegno","entro":"2026-12-16","stato":"todo","fonte":"Appunti, punto 6","nota":""},{"id":"t16","fase":"B","t":"Fotografare ogni incontro e caricare le foto nella cartella condivisa","chi":"Tutti","entro":"2026-12-16","stato":"todo","fonte":"Appunti, punto 8","nota":"Regole per le foto nella scheda Accordi."},{"id":"t17","fase":"B","t":"Contare i manufatti pronti e preparare i cartellini","chi":"Gabriella","entro":"2026-12-14","stato":"todo","fonte":"Progetto","nota":""},{"id":"t18","fase":"C","t":"Decidere con Sabrina dove fare il Mercatino e come allestirlo","chi":"Referenti e Sabrina","entro":"2026-11-20","stato":"todo","fonte":"Appunti, punto 4","nota":"Annotare luogo e allestimento nella scheda Accordi."},{"id":"t19","fase":"C","t":"Preparare l'invito alle famiglie (avviso sul sito e ai rappresentanti dei genitori) con data, luogo e destinazione delle offerte","chi":"Livio","entro":"2026-12-09","stato":"todo","fonte":"Progetto","nota":""},{"id":"t20","fase":"C","t":"Organizzare i turni di alunni e docenti durante il Mercatino","chi":"Referenti","entro":"2026-12-11","stato":"todo","fonte":"","nota":""},{"id":"t21","fase":"C","t":"Allestire lo spazio: tavoli, tovaglie, cartelli e cassetta per le offerte","chi":"Sabrina e classi","entro":"","rel":"mercatino-1","stato":"todo","fonte":"Appunti, punto 4","nota":"Il giorno di lezione prima del Mercatino."},{"id":"t22","fase":"C","t":"Mercatino di Natale","chi":"Tutti","entro":"","rel":"mercatino","stato":"todo","fonte":"Progetto","nota":"Data da fissare con Paolo."},{"id":"t23","fase":"C","t":"Contare le offerte in due docenti, firmare un breve verbale e consegnare la somma come concordato","chi":"Ambra","entro":"","rel":"mercatino","stato":"todo","fonte":"Appunti, punto 7","nota":"Lo stesso giorno del Mercatino."},{"id":"t24","fase":"D","t":"Rendicontare le offerte e acquistare i semi","chi":"Referenti","entro":"2027-01-29","stato":"todo","fonte":"Progetto","nota":""},{"id":"t25","fase":"D","t":"Preparare il prodotto digitale della fase 1 con foto ed elaborati","chi":"Livio","entro":"2027-01-29","stato":"todo","fonte":"Appunti, punto 8","nota":""},{"id":"t26","fase":"D","t":"Autovalutazione degli alunni e osservazione di fine fase","chi":"Docenti di sostegno","entro":"2027-01-29","stato":"todo","fonte":"Progetto","nota":""},{"id":"t27","fase":"E","t":"Progettare l'orto e scegliere le coltivazioni","chi":"Referenti e Scienze","entro":"2027-02-26","stato":"todo","fonte":"Progetto","nota":""},{"id":"t28","fase":"E","t":"Preparare spazi, terreno e contenitori","chi":"Referenti e Tecnologia","entro":"2027-03-19","stato":"todo","fonte":"Progetto","nota":""},{"id":"t29","fase":"E","t":"Seminare e organizzare i turni di cura dell'orto","chi":"Tutti","entro":"2027-05-28","stato":"todo","fonte":"Progetto","nota":""},{"id":"t30","fase":"E","t":"Documentazione e verifica finale del progetto","chi":"Referenti","entro":"2027-05-28","stato":"todo","fonte":"Progetto","nota":""}],"sessioni":[{"id":"s1","data":"2026-11-09","ora":"3","gruppo":"1A","aula":"Laboratorio","docenti":"Gucciardi S.","lavoro":"","stato":"fissato"},{"id":"s2","data":"2026-11-09","ora":"4","gruppo":"2A","aula":"Laboratorio","docenti":"Gucciardi S., Di Franco","lavoro":"","stato":"fissato"},{"id":"s3","data":"2026-11-10","ora":"2","gruppo":"1B","aula":"Laboratorio","docenti":"Gucciardi S.","lavoro":"","stato":"fissato"},{"id":"s4","data":"2026-11-10","ora":"3","gruppo":"3A","aula":"Laboratorio","docenti":"Gucciardi S., Borruso","lavoro":"Magneti con il das","stato":"fissato"},{"id":"smw1uve6leq4u","data":"2026-11-10","ora":"4","gruppo":"3B","aula":"Laboratorio","docenti":"Gucciardi S., Milazzo","lavoro":"Lanterne da barattoli","stato":"fissato"},{"id":"smw1uwfi3cura","data":"2026-11-10","ora":"5","gruppo":"2B","aula":"Laboratorio","docenti":"Gucciardi S., Riginella","lavoro":"","stato":"da fissare"},{"id":"smw1ux3r9jgro","data":"2026-11-10","ora":"6","gruppo":"2C","aula":"Laboratorio","docenti":"Gucciardi S., Blunda","lavoro":"","stato":"da fissare"},{"id":"smw1uxmpnakic","data":"2026-11-11","ora":"3","gruppo":"3B, 1A","aula":"Laboratorio","docenti":"Milazzo","lavoro":"Addobbi albero","stato":"fissato"},{"id":"smw1v0ae2plz1","data":"2026-11-11","ora":"5","gruppo":"2A, 2C","aula":"Laboratorio","docenti":"Blunda, Di Franco","lavoro":"","stato":"fissato"},{"id":"smw1v30g6f2fi","data":"2026-11-12","ora":"4","gruppo":"3B","aula":"Laboratorio","docenti":"Gucciardi S.","lavoro":"","stato":"fissato"},{"id":"smw1v4vjw0q97","data":"2026-11-12","ora":"5","gruppo":"1A","aula":"Laboratorio","docenti":"Gucciardi S.","lavoro":"","stato":"fissato"},{"id":"smw1v5o2r120o","data":"2026-11-12","ora":"6","gruppo":"2C","aula":"Laboratorio","docenti":"Gucciardi S.","lavoro":"","stato":"fissato"},{"id":"smw1v6c6ty021","data":"2026-11-13","ora":"4","gruppo":"3B, 1B","aula":"Laboratorio","docenti":"Milazzo","lavoro":"","stato":"fissato"},{"id":"smw1vawrt1hk1","data":"2026-11-13","ora":"2","gruppo":"3A, 2C","aula":"Laboratorio","docenti":"Borruso, Blunda","lavoro":"","stato":"fissato"}],"lavori":[{"id":"l1","nome":"Alberelli a incastro in cartone","livello":1,"incontri":1,"materiali":"cartone, colori, nastri, bottoni","nota":"Sagoma pronta da ricalcare; si lavora bene in coppia.","stato":"scelto"},{"id":"l2","nome":"Decorazioni con tappi di plastica","livello":1,"incontri":1,"materiali":"tappi, colla vinilica, gomma eva, cordoncino","nota":"Gesti semplici e ripetibili, adatti a tutti.","stato":"scelto"},{"id":"l3","nome":"Lanterne da barattoli","livello":1,"incontri":1,"materiali":"barattoli puliti, carta velina, colla vinilica, nastri","nota":"Dentro solo lucine LED a batteria.","stato":"scelto"},{"id":"l4","nome":"Stelle e fiocchi con rotoli di cartone","livello":1,"incontri":1,"materiali":"rotoli di carta, colla, colori","nota":"Gli anelli si tagliano prima dell'incontro.","stato":"scelto"},{"id":"l5","nome":"Biglietti di auguri in carta di recupero","livello":1,"incontri":1,"materiali":"cartoncini, gomma eva, colori, ritagli di carta","nota":"Ognuno può contribuire anche con un solo elemento.","stato":"scelto"},{"id":"l6","nome":"Ghirlande in cartone con stoffe e bottoni","livello":2,"incontri":2,"materiali":"cartone, ritagli di stoffa, bottoni, nastri","nota":"La base si ritaglia prima, a cura dei docenti.","stato":"scelto"},{"id":"l7","nome":"Alberi con fondi di bottiglia","livello":2,"incontri":2,"materiali":"fondi di bottiglie di plastica, colori, spago","nota":"Il taglio delle bottiglie lo fa un adulto.","stato":"proposta"},{"id":"l8","nome":"Vasetti decorati per l'orto","livello":1,"incontri":1,"materiali":"barattoli o bottiglie, colori, spago, etichette","nota":"Collega il Mercatino all'orto: in primavera servono per la semina.","stato":"proposta"},{"id":"lmw1vgq52a9ys","nome":"Magneti con il das","livello":1,"incontri":1,"materiali":"Das","nota":"","stato":"scelto"},{"id":"lmw1viqieq3jd","nome":"Addobbi albero","livello":1,"incontri":1,"materiali":"Cartoncino, tappi","nota":"","stato":"scelto"}],"materiale":[{"id":"m1","n":"Cartoncini colorati","s":"ver"},{"id":"m2","n":"Colla vinilica","s":"ver"},{"id":"m3","n":"Colla stick","s":"ver"},{"id":"m4","n":"Nastri","s":"ver"},{"id":"m5","n":"Colori","s":"ver"},{"id":"m6","n":"Glitter","s":"ver"},{"id":"m7","n":"Gomma eva","s":"ver"},{"id":"m8","n":"Cordoncino e spago","s":"ver"},{"id":"m9","n":"Bottoni","s":"ver"},{"id":"m10","n":"Rotoli di carta","s":"ver"},{"id":"m11","n":"Forbici","s":"ver"},{"id":"m12","n":"Lucine LED a batteria","s":"ver"}],"classi":[{"c":"1A","plesso":"Vivona","ref":"Simona","materiale":false,"fondo":5,"manufatti":0,"note":"Senza docente di sostegno: individuare chi raccoglie i manufatti"},{"c":"2A","plesso":"Vivona","ref":"Livio","materiale":false,"fondo":0,"manufatti":0,"note":""},{"c":"3A","plesso":"Vivona","ref":"Claudia","materiale":false,"fondo":0,"manufatti":0,"note":""},{"c":"1B","plesso":"Vivona","ref":"","materiale":false,"fondo":5,"manufatti":0,"note":""},{"c":"2B","plesso":"Vivona","ref":"Milena","materiale":false,"fondo":0,"manufatti":0,"note":""},{"c":"3B","plesso":"Vivona","ref":"Ambra","materiale":false,"fondo":5,"manufatti":0,"note":""},{"c":"2C","plesso":"Vivona","ref":"Rossella","materiale":false,"fondo":5,"manufatti":0,"note":""},{"c":"1D","plesso":"Capuana","ref":"Irene","materiale":false,"fondo":0,"manufatti":0,"note":""},{"c":"2D","plesso":"Capuana","ref":"","materiale":false,"fondo":0,"manufatti":0,"note":""},{"c":"3D","plesso":"Capuana","ref":"Serena","materiale":false,"fondo":0,"manufatti":0,"note":""}],"cassa":[{"id":"cmvvge7qlhnlq","data":"2026-10-30","desc":"Materiali vari","fondo":"materiali","tipo":"uscita","importo":29.4,"chi":"Ambra","scontrino":true}],"decisioni":[]}</script>
+<script id="app-js">
+(function () {
+'use strict';
+
+/* ---------- page source, for saving a new version ---------- */
+var HEAD_HTML = '<title>Dal riuso alla vita</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@500&display=swap">\n';
+var APP_PLACEHOLDER = '<div id="app"><p class="wrap boot">Caricamento del progetto…</p></div>';
+var RESET_FALLBACK = ':root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",sans-serif}img{max-width:100%}[hidden]{display:none!important}';
+var RESET = (function () {
+  try {
+    var list = document.head ? document.head.querySelectorAll('style') : [];
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i].textContent || '';
+      if (t.indexOf('safe-area-inset') > -1 && t.indexOf('[hidden]') > -1) return t;
+    }
+  } catch (e) {}
+  return RESET_FALLBACK;
+})();
+var CSS_TEXT = (document.getElementById('app-css') || {}).textContent || '';
+var JS_TEXT = (document.getElementById('app-js') || {}).textContent || '';
+var ORIGINAL = document.getElementById('project-state').textContent;
+var S = JSON.parse(ORIGINAL);
+
+/* ---------- constants ---------- */
+var FASI = [
+  { id: 'A', nome: 'Avvio', periodo: '3 – 13 novembre', tono: 'berry' },
+  { id: 'B', nome: 'Laboratori', periodo: '16 novembre – 16 dicembre', tono: 'berry' },
+  { id: 'C', nome: 'Mercatino di Natale', periodo: 'entro il 22 dicembre', tono: 'berry' },
+  { id: 'D', nome: 'Chiusura della fase 1', periodo: 'gennaio', tono: 'pine' },
+  { id: 'E', nome: 'Fase 2 · Orto condiviso', periodo: 'febbraio – maggio', tono: 'leaf' }
+];
+var MESI = ['Set', 'Ott', 'Nov', 'Dic', 'Gen', 'Feb', 'Mar', 'Apr', 'Mag'];
+var MESI_KEY = ['2026-09', '2026-10', '2026-11', '2026-12', '2027-01', '2027-02', '2027-03', '2027-04', '2027-05'];
+var GANTT = [
+  ['Presentazione del progetto e sensibilizzazione', 0, 1, 'berry'],
+  ['Raccolta e selezione dei materiali di recupero', 1, 2, 'berry'],
+  ['Progettazione e realizzazione dei manufatti natalizi', 1, 3, 'berry'],
+  ['Allestimento e Mercatino di Natale', 2, 3, 'berry'],
+  ['Rendicontazione delle offerte e acquisto dei semi', 4, 4, 'pine'],
+  ['Progettazione e preparazione dell’orto', 4, 6, 'leaf'],
+  ['Semina e cura dell’orto', 5, 8, 'leaf'],
+  ['Documentazione e verifica finale', 7, 8, 'pine']
+];
+var CLOSED = ['2026-11-02', '2026-12-07', '2026-12-08'];
+var RANGES = [['2026-12-23', '2027-01-07'], ['2027-03-25', '2027-03-30']];
+var LAST_DAY = '2026-12-22';
+var EVENTI = [
+  ['2026-11-02', 'Ponte di Ognissanti: niente lezioni'],
+  ['2026-11-25', 'Giornata contro la violenza sulle donne: verificare sovrapposizioni con i laboratori'],
+  ['2026-12-07', 'Ponte dell’Immacolata: niente lezioni'],
+  ['2026-12-08', 'Immacolata'],
+  ['2026-12-22', 'Ultimo giorno di lezione prima delle vacanze'],
+  ['2026-12-23', 'Vacanze di Natale, fino al 7 gennaio'],
+  ['2027-01-08', 'Rientro a scuola'],
+  ['2027-03-25', 'Vacanze di Pasqua, fino al 30 marzo'],
+  ['2027-06-09', 'Fine delle lezioni']
+];
+var CHI_OPTS = ['Referenti', 'Docenti di sostegno', 'Dipartimento di inclusione', 'Sabrina', 'Gabriella', 'Livio', 'Tutti'];
+var STATI = { todo: 'Da fare', doing: 'In corso', done: 'Fatto' };
+var NEXT_STATO = { todo: 'doing', doing: 'done', done: 'todo' };
+var MAT = { ver: 'da verificare', ok: 'c’è', poco: 'sta finendo', compra: 'da comprare' };
+var NEXT_MAT = { ver: 'ok', ok: 'poco', poco: 'compra', compra: 'ok' };
+var TABS = [['da-fare', 'Da fare'], ['cronoprogramma', 'Cronoprogramma'], ['laboratori', 'Laboratori'], ['classi', 'Classi e cassa'], ['accordi', 'Accordi']];
+var EUR = new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' });
+
+/* ---------- helpers ---------- */
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function uid(p) { return p + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function pad(n) { return String(n).padStart(2, '0'); }
+function isoOf(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function dOf(iso) { var p = iso.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2], 12); }
+function addDays(iso, n) { var d = dOf(iso); d.setDate(d.getDate() + n); return isoOf(d); }
+var TODAY = isoOf(new Date());
+function fmt(iso) { return iso ? dOf(iso).toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' }) : ''; }
+function fmtLong(iso) { return iso ? dOf(iso).toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' }) : ''; }
+function isSchoolDay(iso) {
+  var w = dOf(iso).getDay();
+  if (w === 0 || w === 6 || CLOSED.indexOf(iso) > -1) return false;
+  return !RANGES.some(function (r) { return iso >= r[0] && iso <= r[1]; });
+}
+function schoolDays(from, to) { var n = 0; for (var d = from; d <= to; d = addDays(d, 1)) if (isSchoolDay(d)) n++; return n; }
+function prevSchoolDay(iso) { var d = addDays(iso, -1); for (var i = 0; i < 20 && !isSchoolDay(d); i++) d = addDays(d, -1); return d; }
+function dueOf(t) {
+  if (t.rel === 'mercatino') return S.mercatino.data || '';
+  if (t.rel === 'mercatino-1') return S.mercatino.data ? prevSchoolDay(S.mercatino.data) : '';
+  return t.entro || '';
+}
+function isLate(t) { var d = dueOf(t); return !!d && d < TODAY && t.stato !== 'done'; }
+function byDue(a, b) { var x = dueOf(a) || '9999', y = dueOf(b) || '9999'; return x < y ? -1 : x > y ? 1 : 0; }
+function store(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function load(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
+function curTab() { var h = (location.hash || '').slice(1); return TABS.some(function (t) { return t[0] === h; }) ? h : 'da-fare'; }
+function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
+
+/* ---------- view state ---------- */
+var LOCAL = location.protocol === 'file:';
+var GH = !!document.querySelector('meta[name="pn-sito"]');
+var canWrite = LOCAL && !GH, modeKnown = LOCAL || GH, artifactNS = null, dlNS = null, ghData = GH ? 'loading' : '', exportBox = false;
+var dirty = false, saving = false, editing = null, confirmDel = null, autoTimer = null;
+var filt = load('pn-filtri', { chi: '', hideDone: false });
+var drafts = {
+  cassa: { data: TODAY, desc: '', fondo: 'materiali', tipo: 'uscita', importo: '', chi: '', scontrino: false },
+  lavoro: { nome: '', materiali: '', livello: '1', incontri: '1', nota: '' },
+  mat: { n: '' },
+  dec: { data: TODAY, testo: '' }
+};
+var restore = null;
+try { restore = JSON.parse(sessionStorage.getItem('pn-restore') || 'null'); sessionStorage.removeItem('pn-restore'); } catch (e) {}
+var skipScroll = false;
+if (restore && restore.tab && !location.hash) { skipScroll = true; location.hash = restore.tab; }
+
+/* ---------- computed ---------- */
+function calc() {
+  var f1 = S.tasks.filter(function (t) { return t.fase !== 'E'; });
+  var f2 = S.tasks.filter(function (t) { return t.fase === 'E'; });
+  var done = function (a) { return a.filter(function (t) { return t.stato === 'done'; }).length; };
+  var sum = function (fondo, tipo) { return S.cassa.filter(function (m) { return m.fondo === fondo && m.tipo === tipo; }).reduce(function (a, m) { return a + (+m.importo || 0); }, 0); };
+  var fondoClassi = S.classi.reduce(function (a, c) { return a + (+c.fondo || 0); }, 0);
+  return {
+    f1d: done(f1), f1n: f1.length, f2d: done(f2), f2n: f2.length,
+    fondoClassi: fondoClassi,
+    mat: fondoClassi + sum('materiali', 'entrata') - sum('materiali', 'uscita'),
+    uscMat: sum('materiali', 'uscita'),
+    orto: sum('orto', 'entrata') - sum('orto', 'uscita'),
+    offerte: sum('orto', 'entrata'),
+    manufatti: S.classi.reduce(function (a, c) { return a + (+c.manufatti || 0); }, 0),
+    conMat: S.classi.filter(function (c) { return c.materiale; }).length,
+    conFondo: S.classi.filter(function (c) { return (+c.fondo || 0) > 0; }).length,
+    nClassi: S.classi.length
+  };
+}
+function updateComputed() {
+  var c = calc();
+  var map = {
+    f1: c.f1d + ' / ' + c.f1n,
+    mat: EUR.format(c.mat), orto: EUR.format(c.orto), fondoClassi: EUR.format(c.fondoClassi),
+    manufatti: String(c.manufatti), conMat: c.conMat + ' / ' + c.nClassi, conFondo: c.conFondo + ' / ' + c.nClassi
+  };
+  document.querySelectorAll('[data-calc]').forEach(function (el) { var k = el.getAttribute('data-calc'); if (k in map) el.textContent = map[k]; });
+  var bar = document.querySelector('[data-calc-bar="f1"]');
+  if (bar) bar.style.width = (c.f1n ? Math.round(100 * c.f1d / c.f1n) : 0) + '%';
+}
+
+/* ---------- small renderers ---------- */
+function statoCtl(t) {
+  var lbl = STATI[t.stato] || 'Da fare';
+  if (canWrite) return '<button type="button" class="st" data-act="cycle" data-id="' + t.id + '" aria-label="Stato: ' + lbl + '. Tocca per cambiarlo"><span class="dot"></span><span>' + lbl + '</span></button>';
+  return '<span class="st"><span class="dot"></span><span>' + lbl + '</span></span>';
+}
+function delBtns(coll, id, small) {
+  var key = coll + ':' + id, cls = small ? ' sm' : '';
+  if (confirmDel === key) return '<button type="button" class="btn warn' + cls + '" data-act="del" data-coll="' + coll + '" data-id="' + esc(id) + '">Conferma eliminazione</button><button type="button" class="btn' + cls + '" data-act="cancel-del">Annulla</button>';
+  return '<button type="button" class="btn warn' + cls + '" data-act="del" data-coll="' + coll + '" data-id="' + esc(id) + '">Elimina</button>';
+}
+function bind(coll, id, field) { return ' data-coll="' + coll + '" data-id="' + esc(id) + '" data-field="' + field + '"'; }
+function txt(v) { return v ? esc(v) : '<span class="s">—</span>'; }
+
+/* ---------- header ---------- */
+function renderHead() {
+  var c = calc(), m = S.mercatino, mk;
+  if (m.data) {
+    var days = Math.round((dOf(m.data) - dOf(TODAY)) / 864e5);
+    var sub = days > 0 ? 'tra ' + plural(days, 'giorno', 'giorni') + ' · ' + plural(schoolDays(TODAY, m.data), 'giorno', 'giorni') + ' di lezione' : days === 0 ? 'oggi' : 'svolto';
+    mk = '<span class="v">' + esc(fmt(m.data)) + '</span><span class="s">' + sub + (m.luogo ? ' · ' + esc(m.luogo) : '') + '</span>';
+  } else {
+    mk = '<span class="v">Data da fissare</span><span class="s">Ultimo giorno utile: ' + esc(fmt(LAST_DAY)) + '</span>';
+  }
+  var second;
+  if (TODAY <= LAST_DAY) {
+    second = '<div class="stat"><span class="k">Lezioni fino alle vacanze</span><span class="v">' + schoolDays(TODAY, LAST_DAY) + ' giorni</span><span class="s">oggi compreso, senza ponti</span></div>';
+  } else {
+    second = '<div class="stat"><span class="k">Fase 2 · Orto</span><span class="v">' + c.f2d + ' / ' + c.f2n + '</span><span class="s">attività fatte</span></div>';
+  }
+  return '<header class="band"><div class="wrap head">' +
+    '<div><p class="eyebrow">Progetto Natale · Inclusione · IC Vivona</p>' +
+    '<h1>Dal riuso alla vita</h1>' +
+    '<p class="sub">Natale sostenibile e orto condiviso, secondaria di primo grado, a.s. 2026/27. Referenti: Blunda, Milazzo, Di Franco.</p></div>' +
+    '<div class="stats">' +
+      '<div class="stat mk"><span class="k">Mercatino di Natale</span>' + mk + '</div>' + second +
+      '<div class="stat"><span class="k">Fase 1 · Natale</span><span class="v" data-calc="f1">' + c.f1d + ' / ' + c.f1n + '</span><span class="s">attività fatte</span><div class="bar"><i data-calc-bar="f1" style="width:' + (c.f1n ? Math.round(100 * c.f1d / c.f1n) : 0) + '%"></i></div></div>' +
+    '</div></div></header>';
+}
+function renderTabs() {
+  var cur = curTab();
+  return '<nav class="tabs" aria-label="Sezioni"><div class="wrap">' + TABS.map(function (t) {
+    return '<a href="#' + t[0] + '"' + (t[0] === cur ? ' aria-current="page"' : '') + '>' + t[1] + '</a>';
+  }).join('') + '</div></nav>';
+}
+function renderMode() {
+  if (GH) {
+    if (ghData === 'loading') return '<p class="mode">Caricamento dei dati più recenti…</p>';
+    return '<p class="mode"><b>Versione in consultazione.</b> Ultimo aggiornamento dei dati: ' + esc(fmtLong(S.updated)) + '. Per correzioni e novità scrivi ai referenti del progetto.' +
+      (ghData === 'fallback' ? ' <span class="due late">Non è stato possibile leggere i dati più recenti: alcune informazioni potrebbero non essere aggiornate.</span>' : '') + '</p>';
+  }
+  if (!modeKnown) return '';
+  if (canWrite) return '<p class="mode"><b>Puoi aggiornare la pagina.</b> Tocca lo stato di un’attività per cambiarlo; le modifiche arrivano a tutti quando salvi.</p>';
+  return '<p class="mode"><b>Pagina in consultazione.</b> Per aggiornarla serve l’accesso come editor: chiedilo ai referenti.</p>';
+}
+
+/* ---------- tab: da fare ---------- */
+function taskRow(t) {
+  var due = dueOf(t), late = isLate(t);
+  var dueTxt = due ? fmt(due) : (t.rel ? 'segue la data del Mercatino' : 'senza data');
+  var h = '<li class="task s-' + t.stato + (late ? ' late' : '') + '" id="task-' + t.id + '">' + statoCtl(t) +
+    '<div><p class="tt">' + esc(t.t) + '</p><p class="meta"><span>' + esc(t.chi || '—') + '</span><span class="due">entro ' + esc(dueTxt) + (late ? ' · in ritardo' : '') + '</span>' +
+    (t.fonte ? '<span class="src">' + esc(t.fonte) + '</span>' : '') + '</p>' +
+    (t.nota ? '<p class="nota">' + esc(t.nota) + '</p>' : '') + '</div>';
+  if (canWrite) h += '<button type="button" class="ico" data-act="edit-task" data-id="' + t.id + '" aria-expanded="' + (editing === t.id) + '">' + (editing === t.id ? 'Chiudi' : 'Modifica') + '</button>';
+  if (canWrite && editing === t.id) h += taskEditor(t);
+  return h + '</li>';
+}
+function taskEditor(t) {
+  var id = t.id;
+  return '<div class="editor" role="group" aria-label="Modifica attività">' +
+    '<div class="field w4"><label for="e-t-' + id + '">Attività</label><input id="e-t-' + id + '"' + bind('tasks', id, 't') + ' value="' + esc(t.t) + '"></div>' +
+    '<div class="field w2"><label for="e-chi-' + id + '">Chi</label><input id="e-chi-' + id + '" list="chi-list"' + bind('tasks', id, 'chi') + ' value="' + esc(t.chi) + '"></div>' +
+    '<div class="field"><label for="e-due-' + id + '">Entro</label>' + (t.rel ? '<p class="fixed">Segue la data del Mercatino</p>' : '<input type="date" id="e-due-' + id + '"' + bind('tasks', id, 'entro') + ' value="' + esc(t.entro) + '">') + '</div>' +
+    '<div class="field"><label for="e-fase-' + id + '">Fase</label><select id="e-fase-' + id + '"' + bind('tasks', id, 'fase') + '>' + FASI.map(function (f) { return '<option value="' + f.id + '"' + (f.id === t.fase ? ' selected' : '') + '>' + esc(f.nome) + '</option>'; }).join('') + '</select></div>' +
+    '<div class="field w4"><label for="e-nota-' + id + '">Nota</label><input id="e-nota-' + id + '"' + bind('tasks', id, 'nota') + ' value="' + esc(t.nota) + '"></div>' +
+    '<div class="row-btns w4"><button type="button" class="btn pri" data-act="close-edit">Chiudi</button>' + delBtns('tasks', id) + '</div></div>';
+}
+function matchChi(t) {
+  if (!filt.chi) return true;
+  var c = (t.chi || '').toLowerCase();
+  return c.indexOf(filt.chi.toLowerCase()) > -1 || c === 'tutti';
+}
+function renderTodo() {
+  var open = S.tasks.filter(function (t) { return t.stato !== 'done' && dueOf(t); }).sort(byDue).slice(0, 4);
+  var h = '<section class="sec"><div class="sec-h"><h2>Prossime scadenze</h2><span class="hint">Le prime quattro attività ancora aperte, in ordine di data.</span></div>';
+  h += open.length ? '<ol class="next">' + open.map(function (t) {
+    return '<li class="' + (isLate(t) ? 'late' : '') + '"><span class="d">' + esc(fmt(dueOf(t))) + (isLate(t) ? ' · in ritardo' : '') + '</span><span class="x">' + esc(t.t) + '</span><span class="w">' + esc(t.chi) + '</span></li>';
+  }).join('') + '</ol>' : '<p class="empty">Nessuna scadenza aperta.</p>';
+  h += '</section>';
+
+  h += '<div class="filters"><div class="field"><label for="f-chi">Mostra le attività di</label><select id="f-chi" data-filter="chi"><option value="">Tutti</option>' +
+    CHI_OPTS.filter(function (o) { return o !== 'Tutti'; }).map(function (o) { return '<option' + (filt.chi === o ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') +
+    '</select></div><label class="check"><input type="checkbox" id="f-done" data-filter="hideDone"' + (filt.hideDone ? ' checked' : '') + '> Nascondi le attività fatte</label></div>';
+
+  FASI.forEach(function (f) {
+    var all = S.tasks.filter(function (t) { return t.fase === f.id; });
+    var list = all.filter(function (t) { return t.id === editing || (matchChi(t) && !(filt.hideDone && t.stato === 'done')); });
+    list.sort(byDue);
+    var d = all.filter(function (t) { return t.stato === 'done'; }).length;
+    h += '<section class="fase t-' + f.tono + '"><div class="fase-h"><span class="tag">' + (f.id === 'E' ? 'Fase 2' : 'Fase 1') + '</span><h3>' + esc(f.nome) + '</h3><span class="per">' + esc(f.periodo) + '</span><span class="cnt">' + d + ' / ' + all.length + ' fatte</span></div>';
+    h += list.length ? '<ul class="tasks">' + list.map(taskRow).join('') + '</ul>' : '<p class="empty">Nessuna attività con questi filtri.</p>';
+    if (canWrite) h += '<button type="button" class="ico add" data-act="add-task" data-fase="' + f.id + '">+ Aggiungi un’attività</button>';
+    h += '</section>';
+  });
+  return h;
+}
+
+/* ---------- tab: cronoprogramma ---------- */
+function events() {
+  var ev = EVENTI.map(function (e) { return { d: e[0], t: e[1], mk: false }; });
+  if (S.mercatino.data) ev.push({ d: S.mercatino.data, t: 'Mercatino di Natale' + (S.mercatino.luogo ? ' · ' + S.mercatino.luogo : ''), mk: true });
+  return ev.sort(function (a, b) { return a.d < b.d ? -1 : 1; });
+}
+function renderGantt() {
+  var curKey = TODAY.slice(0, 7);
+  var h = '<div class="g-wrap"><div class="gantt" id="gantt"><div class="g-h">Attività</div>' + MESI.map(function (m, i) { return '<div class="g-m' + (MESI_KEY[i] === curKey ? ' cur' : '') + '">' + m + '</div>'; }).join('');
+  GANTT.forEach(function (r) {
+    h += '<div class="g-l t-' + r[3] + '">' + esc(r[0]) + '</div>';
+    for (var i = 0; i < 9; i++) {
+      var on = i >= r[1] && i <= r[2];
+      h += '<div class="g-c t-' + r[3] + (on && i === r[1] ? ' first' : '') + (on && i === r[2] ? ' last' : '') + '">' + (on ? '<i></i>' : '') + '</div>';
+    }
+  });
+  h += '<div class="g-today" id="g-today" hidden><span>oggi</span></div></div></div>';
+  h += '<div class="legend"><span class="t-berry"><i></i>Fase 1 · Natale</span><span class="t-leaf"><i></i>Fase 2 · Orto</span><span class="t-pine"><i></i>Passaggi tra le fasi e verifica</span></div>';
+  return h;
+}
+function placeToday() {
+  var g = document.getElementById('gantt'), line = document.getElementById('g-today');
+  if (!g || !line) return;
+  var idx = MESI_KEY.indexOf(TODAY.slice(0, 7));
+  if (idx < 0) { line.hidden = true; return; }
+  var cell = g.querySelectorAll('.g-m')[idx], d = dOf(TODAY);
+  var dim = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  line.style.left = (cell.offsetLeft + cell.offsetWidth * ((d.getDate() - 0.5) / dim)) + 'px';
+  line.hidden = false;
+}
+function weekLabel(mon) {
+  var fri = addDays(mon, 4), a = dOf(mon), b = dOf(fri);
+  var ma = a.toLocaleDateString('it-IT', { month: 'short' }), mb = b.toLocaleDateString('it-IT', { month: 'short' });
+  return a.getDate() + (ma !== mb ? ' ' + ma : '') + ' – ' + b.getDate() + ' ' + mb;
+}
+function renderWeeks() {
+  var d = dOf(TODAY), wd = (d.getDay() + 6) % 7;
+  var start = addDays(TODAY, -wd), end = '2027-01-31', thisMon = start;
+  var late = S.tasks.filter(function (t) { return isLate(t) && dueOf(t) < thisMon; }).length;
+  var h = late ? '<p class="nota" style="margin-bottom:10px"><span class="due late">' + plural(late, 'attività in ritardo', 'attività in ritardo') + '</span> dalle settimane precedenti: le trovi nella scheda Da fare.</p>' : '';
+  h += '<div class="weeks">';
+  var ev = events();
+  for (var mon = start; mon <= end; mon = addDays(mon, 7)) {
+    var sun = addDays(mon, 6), fri = addDays(mon, 4);
+    var items = S.tasks.filter(function (t) { var x = dueOf(t); return x && x >= mon && x <= sun; }).sort(byDue);
+    var evs = ev.filter(function (e) { return e.d >= mon && e.d <= sun; });
+    var sd = schoolDays(mon, fri);
+    var body = evs.map(function (e) { return '<p class="ev' + (e.mk ? ' mk' : '') + '">' + esc(fmt(e.d)) + ' · ' + esc(e.t) + '</p>'; }).join('') +
+      items.map(function (t) {
+        var cls = t.stato === 'done' ? 'pill ok' : t.stato === 'doing' ? 'pill warn' : 'pill';
+        return '<div class="wrow' + (isLate(t) ? ' late' : '') + '"><span class="' + cls + '">' + STATI[t.stato] + '</span><span class="x">' + esc(t.t) + ' <span class="s">· ' + esc(t.chi) + ' · <span class="due">' + esc(fmt(dueOf(t))) + '</span></span></span></div>';
+      }).join('');
+    if (!body) body = sd ? '<p class="s">Nessuna scadenza.</p>' : '<p class="s">Nessuna lezione.</p>';
+    h += '<div class="week' + (mon === thisMon ? ' now' : '') + (sd ? '' : ' hol') + '"><div class="wk">' + esc(weekLabel(mon)) + (mon === thisMon ? '<b>questa settimana</b>' : '') + '<br><span class="s">' + plural(sd, 'giorno', 'giorni') + ' di lezione</span></div><div class="wi">' + body + '</div></div>';
+  }
+  return h + '</div>';
+}
+function renderCrono() {
+  var h = '<section class="sec"><div class="sec-h"><h2>Il progetto da settembre a maggio</h2><span class="hint">Dalla tabella dei tempi del progetto presentato il 30 settembre.</span></div>' + renderGantt() + '</section>';
+  h += '<section class="sec"><div class="sec-h"><h2>Settimana per settimana</h2><span class="hint">Si aggiorna da solo con le scadenze della scheda Da fare, fino a fine gennaio.</span></div>' + renderWeeks() + '</section>';
+  h += '<section class="sec"><div class="sec-h"><h2>Date del calendario scolastico</h2><span class="hint">Calendario regionale della Sicilia 2026/27. Il santo patrono non è incluso.</span></div><ul class="dates">' +
+    events().map(function (e) { return '<li><span class="due">' + esc(fmt(e.d)) + '</span><span>' + esc(e.t) + '</span></li>'; }).join('') + '</ul></section>';
+  return h;
+}
+
+/* ---------- tab: laboratori ---------- */
+function renderLab() {
+  var ses = S.sessioni.slice().sort(function (a, b) { var x = a.data || '9999', y = b.data || '9999'; return x < y ? -1 : x > y ? 1 : 0; });
+  var h = '<section class="sec"><div class="sec-h"><h2>Calendario degli incontri</h2><span class="hint">Gruppi proposti per classi parallele. Esclusi i giorni in cui la classe ha già Arte o Tecnologia pratica. Per il plesso Capuana decidere se lavorare in sede.</span></div>';
+  h += '<datalist id="lavori-list">' + S.lavori.map(function (l) { return '<option value="' + esc(l.nome) + '">'; }).join('') + '</datalist>';
+  h += '<div class="tbl-wrap"><table class="tbl-sess"><thead><tr><th>Data</th><th>Ora</th><th>Gruppo</th><th>Aula</th><th>Docenti</th><th>Lavoro</th><th>Stato</th>' + (canWrite ? '<th><span class="s">&nbsp;</span></th>' : '') + '</tr></thead><tbody>';
+  ses.forEach(function (s) {
+    if (canWrite) {
+      h += '<tr><td><input type="date" id="s-d-' + s.id + '"' + bind('sessioni', s.id, 'data') + ' value="' + esc(s.data) + '" aria-label="Data"></td>' +
+        '<td><input id="s-o-' + s.id + '"' + bind('sessioni', s.id, 'ora') + ' value="' + esc(s.ora) + '" placeholder="es. 3ª–4ª" aria-label="Ora"></td>' +
+        '<td><input id="s-g-' + s.id + '"' + bind('sessioni', s.id, 'gruppo') + ' value="' + esc(s.gruppo) + '" aria-label="Gruppo"></td>' +
+        '<td><input id="s-a-' + s.id + '"' + bind('sessioni', s.id, 'aula') + ' value="' + esc(s.aula) + '" aria-label="Aula"></td>' +
+        '<td><input id="s-p-' + s.id + '"' + bind('sessioni', s.id, 'docenti') + ' value="' + esc(s.docenti) + '" aria-label="Docenti"></td>' +
+        '<td><input id="s-l-' + s.id + '" list="lavori-list"' + bind('sessioni', s.id, 'lavoro') + ' value="' + esc(s.lavoro) + '" aria-label="Lavoro"></td>' +
+        '<td><select id="s-s-' + s.id + '"' + bind('sessioni', s.id, 'stato') + ' aria-label="Stato">' + ['da fissare', 'fissato', 'svolto'].map(function (o) { return '<option' + (s.stato === o ? ' selected' : '') + '>' + o + '</option>'; }).join('') + '</select></td>' +
+        '<td><div class="row-btns">' + delBtns('sessioni', s.id, true) + '</div></td></tr>';
+    } else {
+      var cls = s.stato === 'svolto' ? 'pill ok' : s.stato === 'fissato' ? 'pill warn' : 'pill';
+      h += '<tr><td class="due">' + txt(fmt(s.data)) + '</td><td>' + txt(s.ora) + '</td><td>' + txt(s.gruppo) + '</td><td>' + txt(s.aula) + '</td><td>' + txt(s.docenti) + '</td><td>' + txt(s.lavoro) + '</td><td><span class="' + cls + '">' + esc(s.stato) + '</span></td></tr>';
+    }
+  });
+  if (!ses.length) h += '<tr><td colspan="8" class="empty">Nessun incontro in calendario.</td></tr>';
+  h += '</tbody></table></div>';
+  if (canWrite) h += '<button type="button" class="ico add" data-act="add-sess">+ Aggiungi un incontro</button>';
+  h += '</section>';
+
+  h += '<section class="sec"><div class="sec-h"><h2>Lavori da realizzare</h2><span class="hint">Proposte di partenza, dalle più facili, da scegliere con Sabrina e Gabriella. Materiali dalla lista del progetto.</span></div><div class="cards">';
+  S.lavori.forEach(function (l) {
+    var lv = +l.livello || 1;
+    h += '<article class="card ' + esc(l.stato) + '"><div class="card-h"><h3>' + esc(l.nome) + '</h3><span class="lvl" title="Difficoltà">' + (lv === 1 ? 'Facile' : lv === 2 ? 'Media' : 'Impegnativa') + ' <i class="on"></i><i class="' + (lv > 1 ? 'on' : '') + '"></i><i class="' + (lv > 2 ? 'on' : '') + '"></i></span></div>' +
+      '<p class="mat"><span class="lbl">Materiali</span><br>' + esc(l.materiali) + '</p>' +
+      '<p class="s">' + plural(+l.incontri || 1, 'incontro', 'incontri') + (l.nota ? ' · ' + esc(l.nota) : '') + '</p>';
+    if (canWrite) {
+      h += '<div class="seg" role="group" aria-label="Scelta">' + [['proposta', 'Proposta'], ['scelto', 'Scelto'], ['scartato', 'Scartato']].map(function (o) {
+        return '<button type="button" data-act="lavoro-stato" data-id="' + l.id + '" data-v="' + o[0] + '" aria-pressed="' + (l.stato === o[0]) + '">' + o[1] + '</button>';
+      }).join('') + '</div><div class="row-btns">' + delBtns('lavori', l.id, true) + '</div>';
+    } else {
+      h += '<div class="seg"><span class="pill' + (l.stato === 'scelto' ? ' ok' : '') + '">' + (l.stato === 'scelto' ? 'Scelto' : l.stato === 'scartato' ? 'Scartato' : 'Proposta') + '</span></div>';
+    }
+    h += '</article>';
+  });
+  h += '</div>';
+  if (canWrite) {
+    var dl = drafts.lavoro;
+    h += '<form class="addform" data-form="lavoro"><div class="field w2"><label for="n-l-nome">Nuovo lavoro</label><input id="n-l-nome" data-draft="lavoro.nome" value="' + esc(dl.nome) + '" placeholder="es. Segnalibri in feltro"></div>' +
+      '<div class="field w2"><label for="n-l-mat">Materiali</label><input id="n-l-mat" data-draft="lavoro.materiali" value="' + esc(dl.materiali) + '"></div>' +
+      '<div class="field"><label for="n-l-liv">Difficoltà</label><select id="n-l-liv" data-draft="lavoro.livello"><option value="1"' + (dl.livello === '1' ? ' selected' : '') + '>Facile</option><option value="2"' + (dl.livello === '2' ? ' selected' : '') + '>Media</option><option value="3"' + (dl.livello === '3' ? ' selected' : '') + '>Impegnativa</option></select></div>' +
+      '<div class="field"><label for="n-l-inc">Incontri</label><input type="number" min="1" max="6" id="n-l-inc" data-draft="lavoro.incontri" value="' + esc(dl.incontri) + '"></div>' +
+      '<div class="field w3"><label for="n-l-nota">Nota</label><input id="n-l-nota" data-draft="lavoro.nota" value="' + esc(dl.nota) + '"></div>' +
+      '<div class="row-btns"><button type="submit" class="btn pri">Aggiungi lavoro</button></div></form>';
+  }
+  h += '</section>';
+
+  h += '<section class="sec"><div class="sec-h"><h2>Materiale di consumo</h2><span class="hint">' + (canWrite ? 'Tocca una voce per cambiarne lo stato: c’è, sta finendo, da comprare.' : 'Stato del materiale in aula-laboratorio.') + '</span></div><div class="chips">';
+  S.materiale.forEach(function (m) {
+    var inner = esc(m.n) + ' <small>' + MAT[m.s] + '</small>';
+    h += canWrite ? '<button type="button" class="chip ' + m.s + '" data-act="mat-cycle" data-id="' + m.id + '">' + inner + '</button>' : '<span class="chip ' + m.s + '">' + inner + '</span>';
+  });
+  h += '</div>';
+  if (canWrite) h += '<form class="inline-add" data-form="mat"><input id="n-m" data-draft="mat.n" value="' + esc(drafts.mat.n) + '" placeholder="Aggiungi una voce" aria-label="Nuova voce di materiale"><button type="submit" class="btn">Aggiungi</button></form>';
+  return h + '</section>';
+}
+
+/* ---------- tab: classi e cassa ---------- */
+function renderClassi() {
+  var c = calc();
+  var h = '<section class="sec"><div class="tiles">' +
+    '<div class="tile"><span class="k">Fondo materiali</span><span class="v" data-calc="mat">' + EUR.format(c.mat) + '</span><span class="s">classi + entrate − spese</span></div>' +
+    '<div class="tile"><span class="k">Fondo orto</span><span class="v" data-calc="orto">' + EUR.format(c.orto) + '</span><span class="s">offerte del Mercatino − semi</span></div>' +
+    '<div class="tile"><span class="k">Manufatti in laboratorio</span><span class="v" data-calc="manufatti">' + c.manufatti + '</span><span class="s">somma delle classi</span></div>' +
+    '<div class="tile"><span class="k">Classi con materiale</span><span class="v" data-calc="conMat">' + c.conMat + ' / ' + c.nClassi + '</span><span class="s">fondo versato: <span data-calc="conFondo">' + c.conFondo + ' / ' + c.nClassi + '</span></span></div>' +
+    '</div></section>';
+
+  h += '<section class="sec"><div class="sec-h"><h2>Classi</h2><span class="hint">Ogni docente di sostegno aggiorna la riga della propria classe: materiale portato, fondo cassa di 5 €, manufatti già in laboratorio.</span></div>';
+  h += '<div class="tbl-wrap"><table class="tbl-classi"><thead><tr><th>Classe</th><th>Plesso</th><th>Chi raccoglie i manufatti</th><th>Materiale</th><th class="num">Fondo €</th><th class="num">Manufatti</th><th>Note</th></tr></thead><tbody>';
+  S.classi.forEach(function (k) {
+    if (canWrite) {
+      h += '<tr><td class="c-id">' + esc(k.c) + '</td><td>' + esc(k.plesso) + '</td>' +
+        '<td><input id="c-r-' + k.c + '"' + bind('classi', k.c, 'ref') + ' value="' + esc(k.ref) + '" placeholder="docente di sostegno" aria-label="Chi raccoglie i manufatti della ' + k.c + '"></td>' +
+        '<td><input type="checkbox" id="c-m-' + k.c + '"' + bind('classi', k.c, 'materiale') + (k.materiale ? ' checked' : '') + ' aria-label="Materiale portato dalla ' + k.c + '"></td>' +
+        '<td class="num"><input type="number" min="0" step="0.5" inputmode="decimal" style="width:6.5em" id="c-f-' + k.c + '"' + bind('classi', k.c, 'fondo') + ' value="' + esc(k.fondo) + '" aria-label="Fondo versato dalla ' + k.c + '"></td>' +
+        '<td class="num"><input type="number" min="0" step="1" inputmode="numeric" style="width:5.5em" id="c-n-' + k.c + '"' + bind('classi', k.c, 'manufatti') + ' value="' + esc(k.manufatti) + '" aria-label="Manufatti della ' + k.c + '"></td>' +
+        '<td><input id="c-x-' + k.c + '"' + bind('classi', k.c, 'note') + ' value="' + esc(k.note) + '" aria-label="Note ' + k.c + '"></td></tr>';
+    } else {
+      h += '<tr><td class="c-id">' + esc(k.c) + '</td><td>' + esc(k.plesso) + '</td><td>' + txt(k.ref) + '</td><td>' + (k.materiale ? '<span class="pill ok">portato</span>' : '<span class="pill">non ancora</span>') + '</td><td class="num">' + EUR.format(+k.fondo || 0) + '</td><td class="num">' + (+k.manufatti || 0) + '</td><td>' + txt(k.note) + '</td></tr>';
+    }
+  });
+  h += '</tbody><tfoot><tr><th colspan="4">Totale</th><th class="num" data-calc="fondoClassi">' + EUR.format(c.fondoClassi) + '</th><th class="num" data-calc="manufatti">' + c.manufatti + '</th><th></th></tr></tfoot></table></div></section>';
+
+  h += '<section class="sec"><div class="sec-h"><h2>Cassa</h2><span class="hint">Due fondi separati: il fondo materiali (5 € per classe e acquisti) e il fondo orto (offerte del Mercatino, solo per semi e materiali dell’orto, come scritto nel progetto). Conservare ogni scontrino.</span></div>';
+  var mov = S.cassa.slice().sort(function (a, b) { return a.data < b.data ? -1 : a.data > b.data ? 1 : 0; });
+  h += '<div class="tbl-wrap"><table class="tbl-cassa"><thead><tr><th>Data</th><th>Descrizione</th><th>Fondo</th><th class="num">Importo</th><th>Chi</th><th>Scontrino</th>' + (canWrite ? '<th><span class="s">&nbsp;</span></th>' : '') + '</tr></thead><tbody>';
+  if (!mov.length) h += '<tr><td colspan="7" class="empty">Nessun movimento. Il primo da registrare sono gli acquisti già fatti, con lo scontrino.</td></tr>';
+  mov.forEach(function (m) {
+    var sign = m.tipo === 'entrata' ? 1 : -1;
+    h += '<tr><td class="due">' + esc(fmt(m.data)) + '</td><td>' + esc(m.desc) + '</td><td>' + (m.fondo === 'orto' ? 'Orto' : 'Materiali') + '</td><td class="num ' + (sign > 0 ? 'pos' : 'neg') + '">' + (sign > 0 ? '+' : '−') + ' ' + EUR.format(+m.importo || 0) + '</td><td>' + txt(m.chi) + '</td><td>' + (m.scontrino ? '<span class="pill ok">sì</span>' : '<span class="pill warn">manca</span>') + '</td>' +
+      (canWrite ? '<td><div class="row-btns">' + delBtns('cassa', m.id, true) + '</div></td>' : '') + '</tr>';
+  });
+  h += '</tbody></table></div>';
+  if (canWrite) {
+    var dc = drafts.cassa;
+    h += '<form class="addform" data-form="cassa"><div class="field"><label for="n-c-data">Data</label><input type="date" id="n-c-data" data-draft="cassa.data" value="' + esc(dc.data) + '"></div>' +
+      '<div class="field w3"><label for="n-c-desc">Descrizione</label><input id="n-c-desc" data-draft="cassa.desc" value="' + esc(dc.desc) + '" placeholder="es. Colla vinilica e nastri"></div>' +
+      '<div class="field"><label for="n-c-tipo">Movimento</label><select id="n-c-tipo" data-draft="cassa.tipo"><option value="uscita"' + (dc.tipo === 'uscita' ? ' selected' : '') + '>Spesa</option><option value="entrata"' + (dc.tipo === 'entrata' ? ' selected' : '') + '>Entrata</option></select></div>' +
+      '<div class="field"><label for="n-c-fondo">Fondo</label><select id="n-c-fondo" data-draft="cassa.fondo"><option value="materiali"' + (dc.fondo === 'materiali' ? ' selected' : '') + '>Materiali</option><option value="orto"' + (dc.fondo === 'orto' ? ' selected' : '') + '>Orto</option></select></div>' +
+      '<div class="field"><label for="n-c-imp">Importo €</label><input type="number" min="0" step="0.01" inputmode="decimal" id="n-c-imp" data-draft="cassa.importo" value="' + esc(dc.importo) + '"></div>' +
+      '<div class="field w2"><label for="n-c-chi">Chi</label><input id="n-c-chi" data-draft="cassa.chi" value="' + esc(dc.chi) + '"></div>' +
+      '<label class="check"><input type="checkbox" id="n-c-sc" data-draft="cassa.scontrino"' + (dc.scontrino ? ' checked' : '') + '> Scontrino</label>' +
+      '<div class="row-btns w2"><button type="submit" class="btn pri">Registra movimento</button></div></form>';
+  }
+  return h + '</section>';
+}
+
+/* ---------- tab: accordi ---------- */
+function renderAccordi() {
+  var m = S.mercatino, h = '<section class="sec"><div class="sec-h"><h2>Mercatino di Natale</h2><span class="hint">Data con Paolo, luogo e allestimento con Sabrina (appunti, punti 4 e 7).</span></div>';
+  if (canWrite) {
+    h += '<div class="mk-form"><div class="field"><label for="mk-data">Data</label><input type="date" id="mk-data" max="' + LAST_DAY + '"' + bind('mercatino', '', 'data') + ' value="' + esc(m.data) + '"></div>' +
+      '<div class="field"><label for="mk-luogo">Luogo</label><input id="mk-luogo"' + bind('mercatino', '', 'luogo') + ' value="' + esc(m.luogo) + '" placeholder="es. atrio del plesso Vivona"></div>' +
+      '<div class="field"><label for="mk-all">Allestimento</label><input id="mk-all"' + bind('mercatino', '', 'allestimento') + ' value="' + esc(m.allestimento) + '" placeholder="tavoli, tovaglie, cartelli…"></div></div>';
+  } else {
+    h += '<div class="mk-read"><p><span class="lbl">Data</span><br>' + (m.data ? esc(fmtLong(m.data)) : 'da fissare') + '</p><p><span class="lbl">Luogo</span><br>' + (m.luogo ? esc(m.luogo) : 'da decidere') + '</p>' + (m.allestimento ? '<p><span class="lbl">Allestimento</span><br>' + esc(m.allestimento) + '</p>' : '') + '</div>';
+  }
+  h += '</section>';
+
+  h += '<section class="sec"><div class="acc">';
+  h += '<div class="block"><h3>Chi fa cosa</h3><dl class="roles">' +
+    '<div><dt>Referenti · Blunda, Milazzo, Di Franco</dt><dd>Calendario, rapporti con Paolo, cassa e rendicontazione, coordinamento.</dd></div>' +
+    '<div><dt>Sabrina Gucciardi · Tecnologia</dt><dd>Scelta dei lavori, luogo e allestimento del Mercatino.</dd></div>' +
+    '<div><dt>Gabriella Longo · Arte e immagine</dt><dd>Scelta dei lavori, cartellini e materiali visivi.</dd></div>' +
+    '<div><dt>Docenti di sostegno</dt><dd>Accompagnano i gruppi, raccolgono i manufatti della propria classe e li conservano in laboratorio.</dd></div>' +
+    '<div><dt>Paolo</dt><dd>Giorno del Mercatino e modalità di raccolta delle offerte.</dd></div>' +
+    '</dl><p class="s" style="margin-top:12px">Ripartizione ricavata dagli appunti e dal progetto, da confermare alla prima riunione.</p></div>';
+
+  h += '<div class="block"><h3>Criteri per far uscire gli alunni</h3><ul><li>Comportamento.</li><li>Impegno nelle discipline coinvolte.</li></ul>' +
+    '<div class="prop"><span class="lbl">Proposte da discutere</span><ul>' +
+    '<li>Gli alunni con disabilità partecipano secondo il PEI, senza criteri di accesso.</li>' +
+    '<li>Turni a rotazione, così ogni alunno della classe partecipa almeno una volta.</li>' +
+    '<li>Il criterio come impegno da mantenere più che come selezione iniziale: il progetto punta anche al recupero della dispersione.</li></ul></div></div>';
+
+  h += '<div class="block"><h3>Regole del laboratorio</h3><ul>' +
+    '<li>Colla a caldo, taglierino e taglio di bottiglie e barattoli solo a cura dei docenti.</li>' +
+    '<li>Materiali di recupero puliti e senza bordi taglienti; niente vetro rotto.</li>' +
+    '<li>Nelle lanterne solo lucine LED a batteria.</li>' +
+    '<li>Ogni manufatto con un’etichetta della classe.</li>' +
+    '<li>A fine incontro: riordino, materiale nell’armadio, manufatti nello spazio della classe.</li></ul></div>';
+
+  h += '<div class="block"><h3>Foto e documentazione</h3><ul>' +
+    '<li>Usare i dispositivi della scuola e una cartella condivisa sul Drive d’istituto, una sottocartella per classe.</li>' +
+    '<li>Nome dei file: <code>2026-11-18_2A_alberelli.jpg</code></li>' +
+    '<li>Tre scatti per incontro: materiali, lavoro in corso, manufatto finito.</li>' +
+    '<li>Senza consenso, fotografare mani e manufatti, non i volti.</li>' +
+    '<li>Le foto servono per il prodotto digitale finale e per la rendicontazione.</li></ul></div>';
+  h += '</div></section>';
+
+  h += '<section class="sec"><div class="sec-h"><h2>Decisioni prese</h2><span class="hint">Un registro breve degli accordi, così chi non era presente sa cosa è stato deciso.</span></div>';
+  var dec = S.decisioni.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; });
+  h += dec.length ? '<ul class="log">' + dec.map(function (d) { return '<li><span class="due">' + esc(fmt(d.data)) + '</span><span>' + esc(d.testo) + '</span>' + (canWrite ? '<span class="row-btns">' + delBtns('decisioni', d.id, true) + '</span>' : '<span></span>') + '</li>'; }).join('') + '</ul>' : '<p class="empty">Nessuna decisione registrata.</p>';
+  if (canWrite) h += '<form class="addform" data-form="dec"><div class="field"><label for="n-d-data">Data</label><input type="date" id="n-d-data" data-draft="dec.data" value="' + esc(drafts.dec.data) + '"></div><div class="field w3"><label for="n-d-t">Decisione</label><input id="n-d-t" data-draft="dec.testo" value="' + esc(drafts.dec.testo) + '" placeholder="es. Il Mercatino si fa nell’atrio del Vivona"></div><div class="row-btns w2"><button type="submit" class="btn pri">Registra</button></div></form>';
+  return h + '</section>';
+}
+
+/* ---------- copia per il sito su GitHub ---------- */
+function exportJSON() { return JSON.stringify(S, null, 2) + '\n'; }
+function renderExport() {
+  if (GH || !canWrite) return '';
+  return '<div class="export"><p><b>Sito pubblico su GitHub.</b> Per aggiornarlo scarica il file dati.json e caricalo nel repository del progetto (Add file → Upload files → Commit changes).</p>' +
+    '<div class="row-btns">' + (dlNS ? '<button type="button" class="btn sm" data-act="export-dl">Scarica dati.json</button>' : '') +
+    '<button type="button" class="btn sm" data-act="export-copy">Copia i dati</button></div>' +
+    (exportBox ? '<textarea id="export-box" class="export-box" readonly aria-label="Dati del progetto da copiare">' + esc(exportJSON()) + '</textarea>' : '') + '</div>';
+}
+
+/* ---------- render ---------- */
+function renderMain() {
+  switch (curTab()) {
+    case 'cronoprogramma': return renderCrono();
+    case 'laboratori': return renderLab();
+    case 'classi': return renderClassi();
+    case 'accordi': return renderAccordi();
+    default: return renderTodo();
+  }
+}
+function render() {
+  var app = document.getElementById('app');
+  app.innerHTML = renderHead() + renderTabs() +
+    '<div class="wrap">' + renderMode() + '<main>' + renderMain() + '</main>' +
+    '<footer><p>Fonti: progetto «Dal riuso alla vita» (presentato il 30/09/2026), appunti di avvio del 30/10/2026, calendario scolastico regionale 2026/27.</p>' +
+    (GH ? '<p>Versione pubblica in sola lettura, aggiornata dai referenti. Non contiene dati degli alunni.</p>'
+      : '<p>Ultimo salvataggio: ' + esc(fmtLong(S.updated)) + '. Non scrivere qui nomi o dati degli alunni: questi dati vanno anche sul sito pubblico del progetto.</p>' + renderExport()) +
+    '</footer></div>' +
+    '<datalist id="chi-list">' + CHI_OPTS.map(function (o) { return '<option value="' + esc(o) + '">'; }).join('') + '</datalist>';
+  placeToday();
+  renderSavebar();
+}
+function rerenderKeepFocus() {
+  var ae = document.activeElement, id = ae && ae.id;
+  render();
+  if (id) { var n = document.getElementById(id); if (n) try { n.focus({ preventScroll: true }); } catch (e) {} }
+}
+var bar = document.createElement('div'); bar.className = 'savebar'; bar.hidden = true; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Salvataggio');
+document.body.appendChild(bar);
+function renderSavebar() {
+  bar.hidden = !(dirty && canWrite);
+  if (bar.hidden) return;
+  bar.innerHTML = '<div class="wrap"><p>' + (saving ? 'Salvataggio in corso…' : 'Modifiche non salvate. Si salvano da sole dopo qualche secondo di pausa.') + '</p><div class="row-btns"><button type="button" class="btn" data-act="undo"' + (saving ? ' disabled' : '') + '>Annulla modifiche</button><button type="button" class="btn pri" data-act="save"' + (saving ? ' disabled' : '') + '>Salva per tutti</button></div></div>';
+}
+var toastEl = null, toastT = null;
+function toast(msg) {
+  if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
+  toastEl.textContent = msg; toastEl.hidden = false;
+  clearTimeout(toastT); toastT = setTimeout(function () { toastEl.hidden = true; }, 5000);
+}
+
+/* ---------- saving ---------- */
+function buildDoc() {
+  var json = JSON.stringify(S).replace(/</g, '\\u003c');
+  return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + RESET + '</style></head><body>' +
+    HEAD_HTML +
+    '<style id="app-css">' + CSS_TEXT + '</style>\n' +
+    APP_PLACEHOLDER + '\n' +
+    '<script type="application/json" id="project-state">' + json + '<\/script>\n' +
+    '<script id="app-js">' + JS_TEXT + '<\/script>\n' +
+    '</body></html>';
+}
+function markDirty() {
+  dirty = true; renderSavebar();
+  clearTimeout(autoTimer); autoTimer = setTimeout(autoSave, 20000);
+}
+function autoSave() {
+  if (!dirty || saving) return;
+  var ae = document.activeElement;
+  if (ae && /^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName)) { autoTimer = setTimeout(autoSave, 8000); return; }
+  save();
+}
+function save(retried) {
+  if (!dirty || saving) return;
+  if (LOCAL) { toast('Anteprima locale: qui non si salva.'); return; }
+  if (!artifactNS) { toast('Il salvataggio non è disponibile in questa vista.'); return; }
+  clearTimeout(autoTimer);
+  saving = true; renderSavebar();
+  S.updated = TODAY;
+  try { sessionStorage.setItem('pn-restore', JSON.stringify({ tab: curTab(), y: window.scrollY })); } catch (e) {}
+  artifactNS.publish(buildDoc()).then(function () {
+    dirty = false; saving = false; renderSavebar();
+  }, function (err) {
+    saving = false;
+    var code = err && err.code;
+    if (code === 'conflict') {
+      try { sessionStorage.setItem('pn-restore', JSON.stringify({ tab: curTab(), y: window.scrollY, notice: 'conflict' })); } catch (e) {}
+      dirty = false;
+    } else if (code === 'upstream_error' && !retried) {
+      setTimeout(function () { save(true); }, 900 + Math.random() * 1200); return;
+    } else if (code === 'rate_limited') {
+      toast('Troppi salvataggi ravvicinati: riprova tra qualche secondo.');
+    } else if (code === 'too_large') {
+      toast('La pagina è diventata troppo grande per essere salvata.');
+    } else if (['not_writer', 'not_granted', 'not_declared', 'consent_required', 'capability_disabled', 'capability_removed'].indexOf(code) > -1) {
+      canWrite = false; dirty = false; S = JSON.parse(ORIGINAL); render();
+      toast('Questa vista è in sola consultazione: la modifica non è stata salvata.');
+    } else {
+      toast('Salvataggio non riuscito. Riprova con «Salva per tutti».');
+    }
+    renderSavebar();
+  });
+}
+
+/* ---------- events ---------- */
+function findIn(coll, id) {
+  var key = coll === 'classi' ? 'c' : 'id';
+  return (S[coll] || []).find(function (x) { return x[key] === id; });
+}
+function setField(el) {
+  var c = el.dataset.coll, f = el.dataset.field, v;
+  if (el.type === 'checkbox') v = el.checked;
+  else if (el.type === 'number') { v = el.value === '' ? 0 : Number(el.value); if (!isFinite(v)) v = 0; }
+  else v = el.value;
+  if (c === 'mercatino') { S.mercatino[f] = v; return; }
+  var o = findIn(c, el.dataset.id);
+  if (o) o[f] = v;
+}
+function setDraft(el) {
+  var p = el.dataset.draft.split('.');
+  drafts[p[0]][p[1]] = el.type === 'checkbox' ? el.checked : el.value;
+}
+document.addEventListener('input', function (e) {
+  var el = e.target;
+  if (!el.dataset) return;
+  if (el.dataset.draft) { setDraft(el); return; }
+  if (el.dataset.coll && canWrite) { setField(el); markDirty(); updateComputed(); }
+});
+document.addEventListener('change', function (e) {
+  var el = e.target;
+  if (!el.dataset) return;
+  if (el.dataset.filter) {
+    filt[el.dataset.filter] = el.type === 'checkbox' ? el.checked : el.value;
+    store('pn-filtri', filt); rerenderKeepFocus(); return;
+  }
+  if (el.dataset.draft) { setDraft(el); return; }
+  if (el.dataset.coll && canWrite) {
+    setField(el); markDirty();
+    if (el.tagName === 'SELECT' || el.type === 'date') rerenderKeepFocus(); else updateComputed();
+  }
+});
+document.addEventListener('submit', function (e) {
+  var f = e.target.closest('form[data-form]');
+  if (!f) return;
+  e.preventDefault();
+  if (!canWrite) return;
+  var kind = f.dataset.form;
+  if (kind === 'cassa') {
+    var d = drafts.cassa, imp = Number(d.importo);
+    if (!d.desc.trim() || !(imp > 0)) { toast('Servono una descrizione e un importo maggiore di zero.'); return; }
+    S.cassa.push({ id: uid('c'), data: d.data || TODAY, desc: d.desc.trim(), fondo: d.fondo, tipo: d.tipo, importo: Math.round(imp * 100) / 100, chi: d.chi.trim(), scontrino: !!d.scontrino });
+    drafts.cassa = { data: TODAY, desc: '', fondo: d.fondo, tipo: d.tipo, importo: '', chi: d.chi, scontrino: false };
+  } else if (kind === 'lavoro') {
+    var l = drafts.lavoro;
+    if (!l.nome.trim()) { toast('Scrivi il nome del lavoro.'); return; }
+    S.lavori.push({ id: uid('l'), nome: l.nome.trim(), livello: Number(l.livello) || 1, incontri: Math.max(1, Number(l.incontri) || 1), materiali: l.materiali.trim(), nota: l.nota.trim(), stato: 'proposta' });
+    drafts.lavoro = { nome: '', materiali: '', livello: '1', incontri: '1', nota: '' };
+  } else if (kind === 'mat') {
+    if (!drafts.mat.n.trim()) return;
+    S.materiale.push({ id: uid('m'), n: drafts.mat.n.trim(), s: 'ver' });
+    drafts.mat.n = '';
+  } else if (kind === 'dec') {
+    var dd = drafts.dec;
+    if (!dd.testo.trim()) { toast('Scrivi la decisione presa.'); return; }
+    S.decisioni.push({ id: uid('d'), data: dd.data || TODAY, testo: dd.testo.trim() });
+    drafts.dec = { data: TODAY, testo: '' };
+  }
+  markDirty(); rerenderKeepFocus();
+});
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-act]');
+  if (!b) return;
+  var act = b.dataset.act, id = b.dataset.id, t;
+  if (act === 'save') { save(); return; }
+  if (act === 'undo') { S = JSON.parse(ORIGINAL); dirty = false; editing = null; confirmDel = null; clearTimeout(autoTimer); render(); toast('Modifiche annullate.'); return; }
+  if (!canWrite) return;
+  switch (act) {
+    case 'cycle':
+      t = findIn('tasks', id); if (!t) return;
+      t.stato = NEXT_STATO[t.stato] || 'doing'; markDirty(); rerenderKeepFocus();
+      var nb = document.querySelector('[data-act="cycle"][data-id="' + id + '"]'); if (nb) nb.focus({ preventScroll: true });
+      break;
+    case 'edit-task':
+      editing = editing === id ? null : id; confirmDel = null; render();
+      if (editing) { var inp = document.getElementById('e-t-' + id); if (inp) inp.focus({ preventScroll: true }); }
+      break;
+    case 'close-edit': editing = null; confirmDel = null; render(); break;
+    case 'add-task':
+      t = { id: uid('t'), fase: b.dataset.fase, t: '', chi: 'Referenti', entro: '', stato: 'todo', fonte: '', nota: '' };
+      S.tasks.push(t); editing = t.id; markDirty(); render();
+      var ni = document.getElementById('e-t-' + t.id); if (ni) { ni.focus(); ni.placeholder = 'Descrivi l’attività'; }
+      break;
+    case 'del':
+      var key = b.dataset.coll + ':' + id;
+      if (confirmDel === key) {
+        var coll = b.dataset.coll, k = coll === 'classi' ? 'c' : 'id';
+        S[coll] = S[coll].filter(function (x) { return x[k] !== id; });
+        if (editing === id) editing = null;
+        confirmDel = null; markDirty();
+      } else confirmDel = key;
+      rerenderKeepFocus();
+      break;
+    case 'cancel-del': confirmDel = null; render(); break;
+    case 'lavoro-stato':
+      t = findIn('lavori', id); if (!t) return;
+      t.stato = b.dataset.v; markDirty(); render();
+      break;
+    case 'mat-cycle':
+      t = findIn('materiale', id); if (!t) return;
+      t.s = NEXT_MAT[t.s] || 'ok'; markDirty(); rerenderKeepFocus();
+      var mb = document.querySelector('[data-act="mat-cycle"][data-id="' + id + '"]'); if (mb) mb.focus({ preventScroll: true });
+      break;
+    case 'export-dl':
+      if (dirty) { toast('Salva prima le modifiche, poi scarica i dati.'); break; }
+      if (!dlNS) { toast('Qui il download non è disponibile: usa «Copia i dati».'); break; }
+      dlNS.save({ filename: 'dati.json', data: exportJSON() }).then(function (r) {
+        if (r && r.status === 'saved') toast('dati.json scaricato: caricalo nel repository su GitHub.');
+      }, function (err) {
+        var code = err && err.code;
+        if (code === 'declined') return;
+        toast(code === 'rate_limited' ? 'C’è già un download in attesa di conferma.' : 'Download non riuscito: usa «Copia i dati».');
+      });
+      break;
+    case 'export-copy':
+      if (dirty) { toast('Salva prima le modifiche, poi copia i dati.'); break; }
+      var openBox = function () {
+        exportBox = true; render();
+        var ta = document.getElementById('export-box');
+        if (ta) { ta.focus(); ta.select(); }
+        toast('Copia il testo selezionato e incollalo in dati.json su GitHub.');
+      };
+      try {
+        navigator.clipboard.writeText(exportJSON()).then(function () { toast('Dati copiati: incollali in dati.json su GitHub.'); }, openBox);
+      } catch (err) { openBox(); }
+      break;
+    case 'add-sess':
+      t = { id: uid('s'), data: '', ora: '', gruppo: '', aula: '', docenti: '', lavoro: '', stato: 'da fissare' };
+      S.sessioni.push(t); markDirty(); render();
+      var si = document.getElementById('s-d-' + t.id); if (si) si.focus();
+      break;
+  }
+});
+window.addEventListener('hashchange', function () {
+  editing = null; confirmDel = null; render();
+  if (skipScroll) { skipScroll = false; return; }
+  window.scrollTo(0, 0);
+});
+window.addEventListener('resize', placeToday);
+window.addEventListener('beforeunload', function (e) { if (dirty && !saving) { e.preventDefault(); e.returnValue = ''; } });
+
+/* ---------- capabilities ---------- */
+function initCaps(tries) {
+  var c = window.claude;
+  if (!c || typeof c.use !== 'function') {
+    if ((tries || 0) < 6) setTimeout(function () { initCaps((tries || 0) + 1); }, 250);
+    else if (!LOCAL) { modeKnown = true; render(); }
+    return;
+  }
+  Promise.all([c.use('artifact'), c.use('user'), c.use('downloads').catch(function () { return null; })]).then(function (r) {
+    artifactNS = r[0]; dlNS = r[2] || null;
+    var u = r[1];
+    if (!artifactNS || !u) return false;
+    return u.canEdit().catch(function () { return false; });
+  }).catch(function () { return false; }).then(function (w) {
+    canWrite = !!w; modeKnown = true; render();
+  });
+}
+
+/* ---------- sito pubblico (GitHub Pages) ---------- */
+function loadGH() {
+  var finish = function (state) { ghData = state; render(); };
+  if (!window.fetch) { finish('fallback'); return; }
+  fetch('dati.json', { cache: 'no-cache' }).then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).then(function (d) {
+    if (!d || !d.mercatino || !Array.isArray(d.tasks) || !Array.isArray(d.classi)) throw new Error('formato non valido');
+    ['sessioni', 'lavori', 'materiale', 'cassa', 'decisioni'].forEach(function (k) { if (!Array.isArray(d[k])) d[k] = []; });
+    S = d; finish('ok');
+  }).catch(function () { finish('fallback'); });
+}
+
+render();
+if (restore) {
+  if (restore.y) setTimeout(function () { window.scrollTo(0, restore.y); }, 60);
+  if (restore.notice === 'conflict') toast('Un collega ha salvato prima di te: la pagina mostra la sua versione. Ripeti la tua modifica.');
+}
+if (GH) loadGH();
+else if (!LOCAL) initCaps(0);
+})();
+</script>
+</body>
+</html>
