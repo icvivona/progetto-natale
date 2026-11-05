@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="pn-sito" content="github">
-<meta name="description" content="Progetto «Dal riuso alla vita»: cose da fare, cronoprogramma, laboratori, classi e cassa. Versione in consultazione.">
+<meta name="description" content="Progetto «Dal riuso alla vita»: cose da fare, cronoprogramma, laboratori, classi e cassa.">
 <title>Dal riuso alla vita</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c5a45'/%3E%3Cpath d='M16 5l7 11h-4l5 8H8l5-8H9z' fill='%23fff'/%3E%3Crect x='14.5' y='24' width='3' height='4' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -266,6 +266,10 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;font-si
 .export b{color:var(--ink)}
 .export-box{width:100%;min-height:10rem;font:.78rem/1.45 var(--f-mono);color:var(--ink);background:var(--sheet);border:1px solid var(--line);border-radius:7px;padding:8px 10px;resize:vertical}
 .export-box:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+.linkbtn{background:none;border:0;padding:0;margin-left:4px;color:var(--pine);font:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.login{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:end;margin-top:10px;padding:12px 14px;background:var(--sheet);border:1px solid var(--line);border-radius:var(--r)}
+.login .field{width:min(220px,100%)}
+.login .s{flex-basis:100%}
 
 /* save bar + toast */
 .savebar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--paper);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -303,6 +307,7 @@ var CSS_TEXT = (document.getElementById('app-css') || {}).textContent || '';
 var JS_TEXT = (document.getElementById('app-js') || {}).textContent || '';
 var ORIGINAL = document.getElementById('project-state').textContent;
 var S = JSON.parse(ORIGINAL);
+var BASE_JSON = ORIGINAL;
 
 /* ---------- constants ---------- */
 var FASI = [
@@ -379,6 +384,7 @@ function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
 var LOCAL = location.protocol === 'file:';
 var GH = !!document.querySelector('meta[name="pn-sito"]');
 var canWrite = LOCAL && !GH, modeKnown = LOCAL || GH, artifactNS = null, dlNS = null, ghData = GH ? 'loading' : '', exportBox = false;
+var GH_URL = '', baseVer = 0, ghCred = null, loginOpen = false, pollT = null, lastName = load('pn-nome', '');
 var dirty = false, saving = false, editing = null, confirmDel = null, autoTimer = null;
 var filt = load('pn-filtri', { chi: '', hideDone: false });
 var drafts = {
@@ -472,7 +478,14 @@ function renderTabs() {
 function renderMode() {
   if (GH) {
     if (ghData === 'loading') return '<p class="mode">Caricamento dei dati più recenti…</p>';
-    return '<p class="mode"><b>Versione in consultazione.</b> Ultimo aggiornamento dei dati: ' + esc(fmtLong(S.updated)) + '. Per correzioni e novità scrivi ai referenti del progetto.' +
+    var upd = 'Ultimo aggiornamento: ' + esc(fmtLong(S.updated)) + '.';
+    if (ghData === 'live') {
+      if (canWrite) return '<p class="mode"><b>Stai modificando' + (ghCred && ghCred.nome ? ' come ' + esc(ghCred.nome) : '') + '.</b> Tocca lo stato di un’attività per cambiarlo: le modifiche si salvano da sole dopo qualche secondo e arrivano a tutti.<button type="button" class="linkbtn" data-act="gh-logout">Esci</button></p>';
+      if (loginOpen) return '<p class="mode"><b>Versione in consultazione.</b> ' + upd + '</p>' + loginForm();
+      return '<p class="mode"><b>Versione in consultazione.</b> ' + upd + '<button type="button" class="linkbtn" data-act="gh-login-open">Modifica la pagina</button></p>';
+    }
+    if (ghData === 'offline') return '<p class="mode"><b>Versione in consultazione.</b> ' + upd + ' <span class="due late">Non è stato possibile collegarsi all’archivio delle modifiche: per ora la pagina non si può modificare e potrebbe non essere aggiornata.</span></p>';
+    return '<p class="mode"><b>Versione in consultazione.</b> ' + upd + ' Per correzioni e novità scrivi ai referenti del progetto.' +
       (ghData === 'fallback' ? ' <span class="due late">Non è stato possibile leggere i dati più recenti: alcune informazioni potrebbero non essere aggiornate.</span>' : '') + '</p>';
   }
   if (!modeKnown) return '';
@@ -784,7 +797,7 @@ function render() {
   app.innerHTML = renderHead() + renderTabs() +
     '<div class="wrap">' + renderMode() + '<main>' + renderMain() + '</main>' +
     '<footer><p>Fonti: progetto «Dal riuso alla vita» (presentato il 30/09/2026), appunti di avvio del 30/10/2026, calendario scolastico regionale 2026/27.</p>' +
-    (GH ? '<p>Versione pubblica in sola lettura, aggiornata dai referenti. Non contiene dati degli alunni.</p>'
+    (GH ? '<p>' + (ghData === 'live' ? 'Le modifiche si salvano nell’archivio della scuola.' : 'Versione pubblica, aggiornata dai referenti.') + ' Non scrivere qui nomi o dati degli alunni: la pagina è pubblica.</p>'
       : '<p>Ultimo salvataggio: ' + esc(fmtLong(S.updated)) + '. Non scrivere qui nomi o dati degli alunni: questi dati vanno anche sul sito pubblico del progetto.</p>' + renderExport()) +
     '</footer></div>' +
     '<datalist id="chi-list">' + CHI_OPTS.map(function (o) { return '<option value="' + esc(o) + '">'; }).join('') + '</datalist>';
@@ -823,7 +836,7 @@ function buildDoc() {
 }
 function markDirty() {
   dirty = true; renderSavebar();
-  clearTimeout(autoTimer); autoTimer = setTimeout(autoSave, 20000);
+  clearTimeout(autoTimer); autoTimer = setTimeout(autoSave, GH ? 5000 : 20000);
 }
 function autoSave() {
   if (!dirty || saving) return;
@@ -833,6 +846,7 @@ function autoSave() {
 }
 function save(retried) {
   if (!dirty || saving) return;
+  if (GH) { saveGH(0); return; }
   if (LOCAL) { toast('Anteprima locale: qui non si salva.'); return; }
   if (!artifactNS) { toast('Il salvataggio non è disponibile in questa vista.'); return; }
   clearTimeout(autoTimer);
@@ -904,6 +918,7 @@ document.addEventListener('submit', function (e) {
   var f = e.target.closest('form[data-form]');
   if (!f) return;
   e.preventDefault();
+  if (f.dataset.form === 'login') { ghLogin(); return; }
   if (!canWrite) return;
   var kind = f.dataset.form;
   if (kind === 'cassa') {
@@ -933,7 +948,19 @@ document.addEventListener('click', function (e) {
   if (!b) return;
   var act = b.dataset.act, id = b.dataset.id, t;
   if (act === 'save') { save(); return; }
-  if (act === 'undo') { S = JSON.parse(ORIGINAL); dirty = false; editing = null; confirmDel = null; clearTimeout(autoTimer); render(); toast('Modifiche annullate.'); return; }
+  if (act === 'undo') { S = JSON.parse(BASE_JSON); dirty = false; editing = null; confirmDel = null; clearTimeout(autoTimer); render(); toast('Modifiche annullate.'); return; }
+  if (act === 'gh-login-open') {
+    loginOpen = true; render();
+    var lf = document.getElementById(lastName ? 'gh-codice' : 'gh-nome'); if (lf) lf.focus();
+    return;
+  }
+  if (act === 'gh-login-cancel') { loginOpen = false; render(); return; }
+  if (act === 'gh-logout') {
+    if (dirty || saving) { toast('Aspetta che le modifiche siano salvate, poi esci.'); return; }
+    ghCredClear(); ghCred = null; canWrite = false; editing = null; confirmDel = null; render();
+    toast('Sei uscito dalla modifica.');
+    return;
+  }
   if (!canWrite) return;
   switch (act) {
     case 'cycle':
@@ -1027,18 +1054,173 @@ function initCaps(tries) {
   });
 }
 
-/* ---------- sito pubblico (GitHub Pages) ---------- */
+/* ---------- sito pubblico (GitHub Pages) con archivio su Foglio Google ---------- */
+function ghCredLoad() {
+  try { var s = sessionStorage.getItem('pn-accesso') || localStorage.getItem('pn-accesso'); return s ? JSON.parse(s) : null; } catch (e) { return null; }
+}
+function ghCredSave(c, remember) {
+  try { (remember ? localStorage : sessionStorage).setItem('pn-accesso', JSON.stringify(c)); } catch (e) {}
+}
+function ghCredClear() {
+  try { sessionStorage.removeItem('pn-accesso'); localStorage.removeItem('pn-accesso'); } catch (e) {}
+}
+function getJSON(url) {
+  return fetch(url, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+}
+function validData(d) { return !!(d && d.mercatino && Array.isArray(d.tasks) && Array.isArray(d.classi)); }
+function normData(d) {
+  ['sessioni', 'lavori', 'materiale', 'cassa', 'decisioni'].forEach(function (k) { if (!Array.isArray(d[k])) d[k] = []; });
+  return d;
+}
+function apiGet() {
+  return fetch(GH_URL + (GH_URL.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+}
+function apiPost(payload) {
+  return fetch(GH_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+}
+
+/* unione a tre vie, riga per riga: chi ha cambiato una riga la tiene; le righe nuove si sommano */
+function sameJ(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+function mergeList(coll, base, local, remote) {
+  var k = coll === 'classi' ? 'c' : 'id';
+  var idx = function (arr) { var m = {}; (arr || []).forEach(function (x) { if (x && x[k] != null) m[x[k]] = x; }); return m; };
+  var B = idx(base), L = idx(local), seen = {}, out = [];
+  (remote || []).forEach(function (r) {
+    var id = r[k]; seen[id] = true;
+    if (id in L) out.push(!(id in B) || !sameJ(L[id], B[id]) ? L[id] : r);
+    else if (!(id in B) || !sameJ(r, B[id])) out.push(r);
+  });
+  (local || []).forEach(function (l) {
+    var id = l[k];
+    if (!seen[id] && (!(id in B) || !sameJ(l, B[id]))) out.push(l);
+  });
+  return out;
+}
+function merge3(base, local, remote) {
+  var out = JSON.parse(JSON.stringify(remote));
+  ['tasks', 'sessioni', 'lavori', 'materiale', 'classi', 'cassa', 'decisioni'].forEach(function (c) { out[c] = mergeList(c, base[c], local[c], remote[c]); });
+  var bm = base.mercatino || {}, lm = local.mercatino || {};
+  out.mercatino = out.mercatino || {};
+  Object.keys(lm).forEach(function (f) { if (lm[f] !== bm[f]) out.mercatino[f] = lm[f]; });
+  out.updated = (local.updated || '') > (remote.updated || '') ? local.updated : remote.updated;
+  return JSON.parse(JSON.stringify(out));
+}
+
 function loadGH() {
   var finish = function (state) { ghData = state; render(); };
   if (!window.fetch) { finish('fallback'); return; }
-  fetch('dati.json', { cache: 'no-cache' }).then(function (r) {
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    return r.json();
-  }).then(function (d) {
-    if (!d || !d.mercatino || !Array.isArray(d.tasks) || !Array.isArray(d.classi)) throw new Error('formato non valido');
-    ['sessioni', 'lavori', 'materiale', 'cassa', 'decisioni'].forEach(function (k) { if (!Array.isArray(d[k])) d[k] = []; });
-    S = d; finish('ok');
+  var fromFile = function (state) {
+    return getJSON('dati.json').then(function (d) {
+      if (!validData(d)) throw new Error('formato non valido');
+      S = normData(d); BASE_JSON = JSON.stringify(S);
+      return state;
+    });
+  };
+  getJSON('config.json').then(function (c) {
+    var u = c && typeof c.backend === 'string' ? c.backend.trim() : '';
+    if (!/^https?:\/\/\S+$/.test(u)) return 'file';
+    GH_URL = u; return 'backend';
+  }, function () { return 'file'; }).then(function (kind) {
+    if (kind === 'file') return fromFile('ok');
+    return apiGet().then(function (r) {
+      if (!r || !r.ok) throw new Error('archivio');
+      baseVer = Number(r.versione) || 0;
+      if (r.dati && validData(r.dati)) { S = normData(r.dati); BASE_JSON = JSON.stringify(S); return 'live'; }
+      return fromFile('live');
+    }).catch(function () {
+      GH_URL = '';
+      return fromFile('offline').catch(function () { return 'offline'; });
+    });
+  }).then(function (state) {
+    if (state === 'live') { ghCred = ghCredLoad(); canWrite = !!ghCred; startPoll(); }
+    finish(state);
   }).catch(function () { finish('fallback'); });
+}
+function loginForm() {
+  return '<form class="login" data-form="login">' +
+    '<div class="field"><label for="gh-nome">Il tuo nome</label><input id="gh-nome" autocomplete="name" value="' + esc(lastName) + '" placeholder="es. Livio"></div>' +
+    '<div class="field"><label for="gh-codice">Codice per modificare</label><input id="gh-codice" type="password" autocomplete="current-password"></div>' +
+    '<label class="check"><input type="checkbox" id="gh-ricorda"> Ricorda su questo dispositivo</label>' +
+    '<div class="row-btns"><button type="submit" class="btn pri" id="gh-entra">Entra</button><button type="button" class="btn" data-act="gh-login-cancel">Annulla</button></div>' +
+    '<p class="s">Il codice lo danno i referenti del progetto. Su un computer condiviso non spuntare «Ricorda».</p></form>';
+}
+function ghLogin() {
+  var nome = ((document.getElementById('gh-nome') || {}).value || '').trim();
+  var codice = ((document.getElementById('gh-codice') || {}).value || '').trim();
+  var ricorda = !!(document.getElementById('gh-ricorda') || {}).checked;
+  var btn = document.getElementById('gh-entra');
+  if (!codice) { toast('Inserisci il codice per modificare.'); return; }
+  if (!GH_URL) { toast('L’archivio non è raggiungibile: riprova più tardi.'); return; }
+  var reset = function () { if (btn) { btn.disabled = false; btn.textContent = 'Entra'; } };
+  if (btn) { btn.disabled = true; btn.textContent = 'Verifica…'; }
+  apiPost({ azione: 'verifica', codice: codice }).then(function (r) {
+    if (r && r.ok) {
+      ghCred = { nome: nome, codice: codice }; ghCredSave(ghCred, ricorda);
+      lastName = nome; store('pn-nome', nome);
+      canWrite = true; loginOpen = false; render();
+      toast('Ora puoi modificare la pagina.');
+      if (dirty) markDirty();
+      return;
+    }
+    reset();
+    toast(r && r.errore === 'codice-non-impostato' ? 'Il codice non è ancora stato impostato nell’archivio: avvisa i referenti.' : 'Codice non valido.');
+  }, function () { reset(); toast('Collegamento all’archivio non riuscito: riprova.'); });
+}
+function saveGH(tries) {
+  if (!GH_URL || !ghCred) { toast('Per salvare entra con il codice.'); return; }
+  clearTimeout(autoTimer);
+  saving = true; renderSavebar();
+  S.updated = TODAY;
+  var sent = JSON.stringify(S);
+  apiPost({ azione: 'salva', codice: ghCred.codice, autore: ghCred.nome || '', versioneBase: baseVer, dati: S }).then(function (r) {
+    saving = false;
+    if (r && r.ok) {
+      baseVer = Number(r.versione) || baseVer + 1;
+      BASE_JSON = sent;
+      dirty = JSON.stringify(S) !== sent;
+      renderSavebar();
+      if (dirty) markDirty();
+      return;
+    }
+    var err = r && r.errore;
+    if (err === 'conflitto' && r.dati && validData(r.dati) && tries < 3) {
+      var remote = normData(r.dati);
+      S = merge3(JSON.parse(BASE_JSON), S, remote);
+      BASE_JSON = JSON.stringify(remote); baseVer = Number(r.versione) || 0;
+      rerenderKeepFocus();
+      saveGH(tries + 1);
+      return;
+    }
+    if (err === 'codice' || err === 'codice-non-impostato') {
+      ghCredClear(); ghCred = null; canWrite = false; loginOpen = true; render();
+      toast('Il codice non è più valido: inseriscilo di nuovo. Le tue modifiche sono ancora qui.');
+      return;
+    }
+    renderSavebar();
+    toast('Salvataggio non riuscito. Riprova con «Salva per tutti».');
+  }, function () {
+    saving = false; renderSavebar();
+    toast('Salvataggio non riuscito: controlla la connessione e riprova con «Salva per tutti».');
+  });
+}
+function refreshGH() {
+  if (!GH_URL || dirty || saving || loginOpen || editing || confirmDel) return;
+  var ae = document.activeElement;
+  if (ae && /^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName)) return;
+  apiGet().then(function (r) {
+    if (!r || !r.ok || !validData(r.dati) || dirty || saving) return;
+    var v = Number(r.versione) || 0;
+    if (v <= baseVer) return;
+    S = normData(r.dati); BASE_JSON = JSON.stringify(S); baseVer = v;
+    rerenderKeepFocus();
+  }).catch(function () {});
+}
+function startPoll() {
+  clearInterval(pollT);
+  pollT = setInterval(function () { if (!document.hidden) refreshGH(); }, 60000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) refreshGH(); });
 }
 
 render();
