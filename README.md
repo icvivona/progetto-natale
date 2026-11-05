@@ -3,7 +3,7 @@
 Pagina di lavoro del progetto «Dal riuso alla vita: Natale sostenibile e orto condiviso»
 (Dipartimento di Inclusione, scuola secondaria di primo grado, IC «F. Vivona» di Calatafimi Segesta, a.s. 2026/27).
 
-**Indirizzo del sito:** https://liviodifranco-source.github.io/progetto-natale/
+**Indirizzo del sito:** https://icvivona.github.io/progetto-natale/
 
 Chiunque abbia il link vede cose da fare, cronoprogramma, laboratori, classi e cassa.
 Chi conosce il **codice per modificare** preme «Modifica la pagina» e aggiorna tutto dal browser,
